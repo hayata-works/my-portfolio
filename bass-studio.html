@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BASS STUDIO | ベース教室 – 弾けた瞬間、バンドが変わる</title>
+  <meta name="description" content="現役プロミュージシャンによる完全個人レッスン。バンド演奏・結婚式・セッションなど、あなたの「弾きたい理由」に寄り添ったベース教室。体験レッスン受付中。">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans JP"', 'sans-serif'],
+            en:   ['"Oswald"', '"Barlow"', 'sans-serif'],
+          },
+          colors: {
+            base:   '#1a1a1a',
+            surface:'#242424',
+            border: '#2e2e2e',
+            orange: { DEFAULT:'#f97316', dark:'#ea6c0a', light:'#fdba74' },
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.7s ease forwards',
+            'pulse-ring': 'pulseRing 2s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%':   { opacity:'0', transform:'translateY(28px)' },
+              '100%': { opacity:'1', transform:'translateY(0)' },
+            },
+            pulseRing: {
+              '0%,100%': { transform:'scale(1)', opacity:'1' },
+              '50%':     { transform:'scale(1.3)', opacity:'0' },
+            },
+          },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body { background: #1a1a1a; }
+
+    /* ノイズテクスチャ風オーバーレイ */
+    .noise::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* スクロールアニメ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+
+    /* カード */
+    .card {
+      background: #242424;
+      border: 1px solid #2e2e2e;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      border-color: rgba(249,115,22,0.4);
+      box-shadow: 0 0 30px rgba(249,115,22,0.08), 0 20px 40px -12px rgba(0,0,0,0.5);
+      transform: translateY(-3px);
+    }
+
+    /* オレンジグロー */
+    .glow { box-shadow: 0 0 24px rgba(249,115,22,0.4); }
+    .glow-sm { box-shadow: 0 0 12px rgba(249,115,22,0.3); }
+    .text-glow { text-shadow: 0 0 30px rgba(249,115,22,0.5); }
+
+    /* セクション見出し共通 */
+    .sec-en {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #f97316;
+    }
+    .sec-ja {
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      line-height: 1.4;
+    }
+
+    /* ヘッダー */
+    #header { transition: background 0.4s; }
+
+    /* 区切り線 */
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: #f97316;
+    }
+
+    /* 料金カード featured */
+    .plan-featured {
+      border-color: rgba(249,115,22,0.5) !important;
+      box-shadow: 0 0 40px rgba(249,115,22,0.12);
+    }
+
+    /* ステップ番号ライン */
+    .step-connector {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 56px;
+      width: 1px;
+      height: calc(100% - 56px);
+      background: linear-gradient(to bottom, rgba(249,115,22,0.5), transparent);
+    }
+
+    /* FAQ */
+    details summary { list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+    details[open] summary .faq-icon { transform: rotate(45deg); }
+    .faq-icon { transition: transform 0.3s; }
+
+    /* アンダーラインホバーリンク */
+    .nav-link {
+      position: relative;
+      color: rgba(255,255,255,0.55);
+      transition: color 0.2s;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1px;
+      background: #f97316;
+      transition: width 0.3s;
+    }
+    .nav-link:hover { color: #fff; }
+    .nav-link:hover::after { width: 100%; }
+
+    /* ヒーロー斜めカット */
+    .hero-slash {
+      clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+    }
+
+    /* グラデーションテキスト */
+    .grad-text {
+      background: linear-gradient(90deg, #f97316 0%, #fb923c 50%, #fdba74 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
+</head>
+<body class="font-sans text-white antialiased">
+
+<!-- ===== HEADER ===== -->
+<header id="header" class="fixed top-0 left-0 right-0 z-50 bg-[#1a1a1a]/90 border-b border-white/5 backdrop-blur-md">
+  <div class="max-w-6xl mx-auto px-5 py-3.5 flex items-center justify-between">
+    <!-- ロゴ -->
+    <a href="#top" class="flex items-center gap-3">
+      <span class="w-8 h-8 rounded bg-orange-DEFAULT flex items-center justify-center glow-sm flex-shrink-0">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+          <path d="M9 18V5l12-2v13"/>
+          <circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+        </svg>
+      </span>
+      <div class="leading-none">
+        <p style="font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:0.15em;color:#fff">BASS STUDIO</p>
+        <p class="text-[9px] text-white/30 tracking-[0.25em] uppercase">ベース専門教室</p>
+      </div>
+    </a>
+    <!-- ナビ -->
+    <nav class="hidden md:flex items-center gap-6">
+      <a href="#dreams" class="nav-link">こんな方へ</a>
+      <a href="#reasons" class="nav-link">選ばれる理由</a>
+      <a href="#courses" class="nav-link">コース・料金</a>
+      <a href="#voices" class="nav-link">生徒の声</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+      <a href="#cta"
+         class="ml-2 px-4 py-2 bg-orange-DEFAULT hover:bg-orange-dark text-white font-bold rounded-lg text-xs tracking-wide transition glow-sm">
+        無料体験レッスン
+      </a>
+    </nav>
+    <a href="#cta" class="md:hidden px-3.5 py-2 bg-orange-DEFAULT text-white font-bold rounded-lg text-xs tracking-wide glow-sm">
+      無料体験
+    </a>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="top" class="relative min-h-screen flex items-center overflow-hidden pt-16">
+  <!-- 背景 -->
+  <div class="absolute inset-0 hero-slash">
+    <img src="https://placehold.co/1920x1080/111111/333333?text=Bass+Player"
+         alt="ベースを演奏する" class="w-full h-full object-cover opacity-40">
+    <div class="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/80 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent"></div>
+  </div>
+
+  <!-- オレンジのアクセント光 -->
+  <div class="absolute top-1/3 left-1/2 w-[600px] h-[600px] rounded-full bg-orange-DEFAULT/5 blur-[120px] pointer-events-none"></div>
+
+  <div class="relative max-w-6xl mx-auto px-5 py-24 w-full">
+    <div class="max-w-2xl">
+      <!-- ラベル -->
+      <div class="inline-flex items-center gap-2 border border-orange-DEFAULT/30 bg-orange-DEFAULT/10 rounded-full px-4 py-1.5 mb-7 reveal">
+        <span class="w-1.5 h-1.5 rounded-full bg-orange-DEFAULT animate-pulse"></span>
+        <span class="text-orange-light text-xs font-semibold tracking-[0.25em] uppercase">体験レッスン受付中</span>
+      </div>
+
+      <!-- キャッチコピー -->
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.15] tracking-tight mb-6 reveal reveal-d1">
+        弾けた瞬間、<br>
+        <span class="grad-text text-glow">バンドが変わる。</span>
+      </h1>
+
+      <!-- サブコピー -->
+      <p class="text-white/60 text-base sm:text-lg leading-relaxed mb-10 max-w-lg reveal reveal-d2">
+        ベースは「縁の下の力持ち」じゃない。<br>
+        あなたの一音が、バンド全体のグルーヴを支配する。<br class="hidden sm:block">
+        <strong class="text-white/85">BASS STUDIO</strong>で、その感覚を体験してください。
+      </p>
+
+      <!-- CTA -->
+      <div class="flex flex-wrap gap-4 reveal reveal-d3">
+        <a href="#cta"
+           class="inline-flex items-center gap-2.5 px-7 py-4 bg-orange-DEFAULT hover:bg-orange-dark text-white font-bold rounded-xl text-sm tracking-wide transition glow">
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          無料体験レッスンに申し込む
+        </a>
+        <a href="#dreams"
+           class="inline-flex items-center gap-2 px-7 py-4 border border-white/15 text-white/70 hover:border-white/30 hover:text-white rounded-xl text-sm tracking-wide transition">
+          詳しく見る
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- 実績数値 -->
+      <div class="flex flex-wrap gap-8 mt-14 reveal reveal-d4">
+        <div>
+          <p class="text-3xl font-black text-orange-DEFAULT">200<span class="text-xl">+</span></p>
+          <p class="text-xs text-white/35 mt-0.5 tracking-wide">累計受講生</p>
+        </div>
+        <div class="w-px bg-white/10"></div>
+        <div>
+          <p class="text-3xl font-black text-orange-DEFAULT">96<span class="text-xl">%</span></p>
+          <p class="text-xs text-white/35 mt-0.5 tracking-wide">体験レッスン満足度</p>
+        </div>
+        <div class="w-px bg-white/10"></div>
+        <div>
+          <p class="text-3xl font-black text-orange-DEFAULT">15<span class="text-xl">年</span></p>
+          <p class="text-xs text-white/35 mt-0.5 tracking-wide">プロ経験のある講師陣</p>
+        </div>
+        <div class="w-px bg-white/10"></div>
+        <div>
+          <p class="text-3xl font-black text-orange-DEFAULT">3<span class="text-xl">駅</span></p>
+          <p class="text-xs text-white/35 mt-0.5 tracking-wide">徒歩圏内のアクセス</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- スクロール -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+    <span class="text-[10px] tracking-[0.3em] text-white/20 uppercase font-en">Scroll</span>
+    <div class="w-px h-10 bg-gradient-to-b from-orange-DEFAULT/60 to-transparent animate-pulse"></div>
+  </div>
+</section>
+
+<!-- ===== DREAMS ===== -->
+<section id="dreams" class="py-28 max-w-6xl mx-auto px-5">
+  <div class="mb-16 reveal">
+    <p class="sec-en mb-3">Your Dream</p>
+    <h2 class="sec-ja text-3xl sm:text-4xl">こんな夢がある方へ</h2>
+    <div class="divider mt-4"></div>
+    <p class="text-white/40 text-sm mt-5 max-w-lg leading-relaxed">
+      「ベースを弾けるようになったら何をしたいか」——<br>
+      その答えがあなたのレッスンのゴールになります。
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    <!-- シーン1：バンド -->
+    <div class="card rounded-2xl overflow-hidden flex flex-col reveal reveal-d1">
+      <div class="relative h-52 overflow-hidden">
+        <img src="https://placehold.co/600x400/1f1510/f97316?text=Band+Live"
+             alt="バンドでライブ演奏" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent"></div>
+        <div class="absolute bottom-4 left-5">
+          <span class="text-xs bg-orange-DEFAULT text-white font-bold px-3 py-1 rounded-full tracking-wide">Scene 01</span>
+        </div>
+      </div>
+      <div class="p-6 flex flex-col flex-1">
+        <h3 class="text-lg font-bold mb-3 tracking-wide">
+          仲間とライブステージに立ちたい
+        </h3>
+        <p class="text-white/45 text-sm leading-relaxed flex-1">
+          観客の歓声の中、バンドのリズムを支えるベースの音が響く。ドラムと息を合わせてグルーヴを刻む——その快感を、あなたも感じてみませんか？バンドデビューを目標にしたカリキュラムで、着実にステージへ近づけます。
+        </p>
+        <div class="mt-5 pt-5 border-t border-[#2e2e2e]">
+          <p class="text-orange-DEFAULT text-xs font-semibold tracking-wide">→ バンドコース対応</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- シーン2：結婚式 -->
+    <div class="card rounded-2xl overflow-hidden flex flex-col reveal reveal-d2">
+      <div class="relative h-52 overflow-hidden">
+        <img src="https://placehold.co/600x400/151520/f97316?text=Wedding+Performance"
+             alt="結婚式でベース演奏" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent"></div>
+        <div class="absolute bottom-4 left-5">
+          <span class="text-xs bg-orange-DEFAULT text-white font-bold px-3 py-1 rounded-full tracking-wide">Scene 02</span>
+        </div>
+      </div>
+      <div class="p-6 flex flex-col flex-1">
+        <h3 class="text-lg font-bold mb-3 tracking-wide">
+          大切な人の前で演奏を披露したい
+        </h3>
+        <p class="text-white/45 text-sm leading-relaxed flex-1">
+          友人の結婚式、記念日のサプライズ、家族へのプレゼント——自分の手で奏でる音楽は、言葉よりも深く心に届きます。「弾けるようになった」その日のために、1曲完成を目標にした丁寧なレッスンを行います。
+        </p>
+        <div class="mt-5 pt-5 border-t border-[#2e2e2e]">
+          <p class="text-orange-DEFAULT text-xs font-semibold tracking-wide">→ 1曲完成コース対応</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- シーン3：セッション -->
+    <div class="card rounded-2xl overflow-hidden flex flex-col reveal reveal-d3">
+      <div class="relative h-52 overflow-hidden">
+        <img src="https://placehold.co/600x400/0d1a10/f97316?text=Jam+Session"
+             alt="セッションを楽しむ" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent"></div>
+        <div class="absolute bottom-4 left-5">
+          <span class="text-xs bg-orange-DEFAULT text-white font-bold px-3 py-1 rounded-full tracking-wide">Scene 03</span>
+        </div>
+      </div>
+      <div class="p-6 flex flex-col flex-1">
+        <h3 class="text-lg font-bold mb-3 tracking-wide">
+          ジャムセッションで自由に弾きたい
+        </h3>
+        <p class="text-white/45 text-sm leading-relaxed flex-1">
+          セッションバーやスタジオで、初対面のミュージシャンとその場のノリで音を合わせる——ベースが弾けると、音楽を通じた出会いが広がります。即興で対応できる耳と技術を、体系的に身に付けます。
+        </p>
+        <div class="mt-5 pt-5 border-t border-[#2e2e2e]">
+          <p class="text-orange-DEFAULT text-xs font-semibold tracking-wide">→ セッションコース対応</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== REASONS ===== -->
+<section id="reasons" class="py-28 border-t border-[#2e2e2e]">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="mb-16 reveal">
+      <p class="sec-en mb-3">Why Choose Us</p>
+      <h2 class="sec-ja text-3xl sm:text-4xl">選ばれる3つの理由</h2>
+      <div class="divider mt-4"></div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+      <!-- 理由1 -->
+      <div class="reveal reveal-d1">
+        <div class="relative mb-6">
+          <img src="https://placehold.co/600x360/1f1f1f/f97316?text=Pro+Instructor"
+               alt="プロ講師" class="w-full rounded-xl object-cover aspect-video">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/60 to-transparent rounded-xl"></div>
+          <div class="absolute top-4 left-4 w-12 h-12 rounded-full bg-orange-DEFAULT flex items-center justify-center glow-sm">
+            <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:1.2rem;color:#fff">01</span>
+          </div>
+        </div>
+        <h3 class="text-xl font-bold mb-3 tracking-wide">現役プロが教える<br>本物の技術</h3>
+        <p class="text-white/45 text-sm leading-relaxed">
+          全講師が現役のプロミュージシャン。CDリリース・全国ツアー・レコーディング経験を持つ講師が、「現場で通用する音」を直接指導します。教科書的ではない、生きた音楽を学べます。
+        </p>
+      </div>
+
+      <!-- 理由2 -->
+      <div class="reveal reveal-d2">
+        <div class="relative mb-6">
+          <img src="https://placehold.co/600x360/1a1a2a/f97316?text=Private+Lesson"
+               alt="完全個人レッスン" class="w-full rounded-xl object-cover aspect-video">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/60 to-transparent rounded-xl"></div>
+          <div class="absolute top-4 left-4 w-12 h-12 rounded-full bg-orange-DEFAULT flex items-center justify-center glow-sm">
+            <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:1.2rem;color:#fff">02</span>
+          </div>
+        </div>
+        <h3 class="text-xl font-bold mb-3 tracking-wide">完全個人レッスンで<br>あなたのペースを守る</h3>
+        <p class="text-white/45 text-sm leading-relaxed">
+          グループレッスンと違い、あなたの目標・進度・好きな音楽に合わせた完全オーダーメイドのカリキュラムを提供。周りを気にせず集中でき、疑問もその場で解決できます。
+        </p>
+      </div>
+
+      <!-- 理由3 -->
+      <div class="reveal reveal-d3">
+        <div class="relative mb-6">
+          <img src="https://placehold.co/600x360/1a1f1a/f97316?text=Studio+Equipment"
+               alt="充実のスタジオ設備" class="w-full rounded-xl object-cover aspect-video">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/60 to-transparent rounded-xl"></div>
+          <div class="absolute top-4 left-4 w-12 h-12 rounded-full bg-orange-DEFAULT flex items-center justify-center glow-sm">
+            <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:1.2rem;color:#fff">03</span>
+          </div>
+        </div>
+        <h3 class="text-xl font-bold mb-3 tracking-wide">本格スタジオで<br>音に集中できる環境</h3>
+        <p class="text-white/45 text-sm leading-relaxed">
+          FENDER・Gibson・Musicmanなど一流ブランドのベースを完備。防音スタジオでの個室レッスンだから、大音量で思い切り弾ける。楽器を持っていない初心者も、手ぶらで来られます。
+        </p>
+      </div>
+
+    </div>
+
+    <!-- 追加ポイント（横並び） -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 reveal">
+      <div class="bg-[#242424] border border-[#2e2e2e] rounded-xl p-4 text-center">
+        <p class="text-2xl font-black text-orange-DEFAULT mb-1">手ぶら</p>
+        <p class="text-xs text-white/40">OK・楽器不要</p>
+      </div>
+      <div class="bg-[#242424] border border-[#2e2e2e] rounded-xl p-4 text-center">
+        <p class="text-2xl font-black text-orange-DEFAULT mb-1">振替</p>
+        <p class="text-xs text-white/40">月1回まで無料</p>
+      </div>
+      <div class="bg-[#242424] border border-[#2e2e2e] rounded-xl p-4 text-center">
+        <p class="text-2xl font-black text-orange-DEFAULT mb-1">録画</p>
+        <p class="text-xs text-white/40">レッスン動画を共有</p>
+      </div>
+      <div class="bg-[#242424] border border-[#2e2e2e] rounded-xl p-4 text-center">
+        <p class="text-2xl font-black text-orange-DEFAULT mb-1">他科目</p>
+        <p class="text-xs text-white/40">ギター・ドラム割引</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COURSES ===== -->
+<section id="courses" class="py-28 border-t border-[#2e2e2e]">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="mb-16 reveal">
+      <p class="sec-en mb-3">Courses &amp; Pricing</p>
+      <h2 class="sec-ja text-3xl sm:text-4xl">コース・料金</h2>
+      <div class="divider mt-4"></div>
+      <p class="text-white/40 text-sm mt-5 leading-relaxed">
+        すべて税込・入会費無料。体験レッスン後に正式入会をご検討いただけます。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+      <!-- 体験レッスン -->
+      <div class="card rounded-2xl p-6 flex flex-col reveal reveal-d1">
+        <p class="sec-en text-[10px] mb-2">Trial</p>
+        <h3 class="text-base font-bold mb-1 tracking-wide">体験レッスン</h3>
+        <p class="text-xs text-white/35 mb-5">初めての方向け</p>
+        <div class="mb-5">
+          <span class="text-4xl font-black text-orange-DEFAULT">¥3,000</span>
+          <span class="text-white/30 text-xs ml-1">（税込）</span>
+        </div>
+        <ul class="space-y-2.5 mb-6 flex-1 text-xs text-white/50">
+          <li class="flex items-start gap-2"><span class="text-orange-DEFAULT mt-0.5">✓</span>60分・完全個室</li>
+          <li class="flex items-start gap-2"><span class="text-orange-DEFAULT mt-0.5">✓</span>カウンセリング込み</li>
+          <li class="flex items-start gap-2"><span class="text-orange-DEFAULT mt-0.5">✓</span>楽器レンタル無料</li>
+          <li class="flex items-start gap-2"><span class="text-orange-DEFAULT mt-0.5">✓</span>入会プレッシャーなし</li>
+        </ul>
+        <a href="#cta" class="block text-center py-2.5 border border-orange-DEFAULT/40 text-orange-DEFAULT hover:bg-orange-DEFAULT hover:text-white rounded-lg text-xs font-bold transition">
+          予約する
+        </a>
+      </div>
+
+      <!-- ライトコース -->
+      <div class="card rounded-2xl p-6 flex flex-col reveal reveal-d2">
+        <p class="sec-en text-[10px] mb-2">Light</p>
+        <h3 class="text-base font-bold mb-1 tracking-wide">月2回コース</h3>
+        <p class="text-xs text-white/35 mb-5">マイペースに続けたい方</p>
+        <div class="mb-5">
+          <span class="text-4xl font-black text-white">¥8,800</span>
+          <span class="text-white/30 text-xs ml-1">/月（税込）</span>
+        </div>
+        <ul class="space-y-2.5 mb-6 flex-1 text-xs text-white/50">
+          <li class="flex items-start gap-2"><span class="text-orange-DEFAULT mt-0.5">✓</span>月2回 × 45分/回</li>
+          <li class="flex items-start gap-2"><span class="text-orange-DEFAULT mt-0.5">✓</span>オリジナルテキスト</li>
+          <li class="flex items-start gap-2"><span class="text-orange-DEFAULT mt-0.5">✓</span>振替1回/月</li>
+          <li class="flex items-start gap-2"><span class="text-orange-DEFAULT mt-0.5">✓</span>レッスン動画共有</li>
+        </ul>
+        <a href="#cta" class="block text-center py-2.5 border border-white/15 text-white/60 hover:border-white/30 hover:text-white rounded-lg text-xs font-bold transition">
+          このコースで相談
+        </a>
+      </div>
+
+      <!-- スタンダード（おすすめ） -->
+      <div class="card plan-featured rounded-2xl p-6 flex flex-col reveal reveal-d3 relative">
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-orange-DEFAULT text-white text-[10px] font-bold px-4 py-1 rounded-full whitespace-nowrap tracking-wide glow-sm">
+          一番人気
+        </div>
+        <p class="sec-en text-[10px] mb-2">Standard</p>
+        <h3 class="text-base font-bold mb-1 tracking-wide">月4回コース</h3>
+        <p class="text-xs text-white/35 mb-5">しっかり上達したい方</p>
+        <div class="mb-5">
+          <span class="text-4xl font-black text-orange-DEFAULT">¥15,800</span>
+          <span class="text-white/30 text-xs ml-1">/月（税込）</span>
+        </div>
+        <ul class="space-y-2.5 mb-6 flex-1 text-xs text-white/50">
+          <li class="flex items-start gap-2"><span class="text-orange-DEFAULT mt-0.5">✓</span>月4回 × 45分/回</li>
+          <li class="flex items-start gap-2"><span class="text-orange-DEFAULT mt-0.5">✓</span>オリジナルテキスト</li>
+          <li class="flex items-start gap-2"><span class="text-orange-DEFAULT mt-0.5">✓</span>振替1回/月</li>
+          <li class="flex items-start gap-2"><span class="text-orange-DEFAULT mt-0.5">✓</span>レッスン動画共有</li>
+          <li class="flex items-start gap-2"><span class="text-orange-DEFAULT mt-0.5">✓</span>LINEで質問し放題</li>
+        </ul>
+        <a href="#cta" class="block text-center py-2.5 bg-orange-DEFAULT hover:bg-orange-dark text-white rounded-lg text-xs font-bold transition glow-sm">
+          このコースで相談
+        </a>
+      </div>
+
+      <!-- 集中コース -->
+      <div class="card rounded-2xl p-6 flex flex-col reveal reveal-d4">
+        <p class="sec-en text-[10px] mb-2">Intensive</p>
+        <h3 class="text-base font-bold mb-1 tracking-wide">集中コース</h3>
+        <p class="text-xs text-white/35 mb-5">本番・目標日が決まっている方</p>
+        <div class="mb-5">
+          <span class="text-4xl font-black text-white">¥22,800</span>
+          <span class="text-white/30 text-xs ml-1">/月（税込）</span>
+        </div>
+        <ul class="space-y-2.5 mb-6 flex-1 text-xs text-white/50">
+          <li class="flex items-start gap-2"><span class="text-orange-DEFAULT mt-0.5">✓</span>月8回 × 45分/回</li>
+          <li class="flex items-start gap-2"><span class="text-orange-DEFAULT mt-0.5">✓</span>目標設定シート</li>
+          <li class="flex items-start gap-2"><span class="text-orange-DEFAULT mt-0.5">✓</span>振替2回/月</li>
+          <li class="flex items-start gap-2"><span class="text-orange-DEFAULT mt-0.5">✓</span>LINEで質問し放題</li>
+          <li class="flex items-start gap-2"><span class="text-orange-DEFAULT mt-0.5">✓</span>月次フィードバック動画</li>
+        </ul>
+        <a href="#cta" class="block text-center py-2.5 border border-white/15 text-white/60 hover:border-white/30 hover:text-white rounded-lg text-xs font-bold transition">
+          このコースで相談
+        </a>
+      </div>
+
+    </div>
+
+    <p class="text-center text-xs text-white/25 mt-7 reveal">
+      ※ 入会金・教材費・スタジオ代はすべて無料です。月のコース変更も相談可能です。
+    </p>
+  </div>
+</section>
+
+<!-- ===== TRIAL FLOW ===== -->
+<section id="flow" class="py-28 border-t border-[#2e2e2e]">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="mb-16 reveal">
+      <p class="sec-en mb-3">Trial Lesson Flow</p>
+      <h2 class="sec-ja text-3xl sm:text-4xl">体験レッスンの流れ</h2>
+      <div class="divider mt-4"></div>
+    </div>
+
+    <!-- 3ステップ（横並び） -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-0 relative">
+      <!-- コネクター（PC） -->
+      <div class="hidden md:block absolute top-10 left-[33%] right-[33%] h-0.5 bg-gradient-to-r from-orange-DEFAULT/60 to-orange-DEFAULT/60 via-orange-DEFAULT/30"></div>
+
+      <!-- Step 1 -->
+      <div class="flex flex-col items-center text-center px-8 py-6 reveal reveal-d1">
+        <div class="w-20 h-20 rounded-full border-2 border-orange-DEFAULT bg-orange-DEFAULT/10 flex items-center justify-center mb-6 relative z-10 glow-sm">
+          <span style="font-family:'Oswald',sans-serif;font-size:1.6rem;font-weight:700;color:#f97316">01</span>
+        </div>
+        <div class="w-8 h-8 rounded-full bg-[#242424] border border-[#2e2e2e] flex items-center justify-center mb-5">
+          <svg class="w-4 h-4 text-orange-DEFAULT" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-base mb-3 tracking-wide">ご予約</h3>
+        <p class="text-white/40 text-sm leading-relaxed">
+          このページ下部のフォームかお電話でご予約ください。「体験希望」とお伝えいただくだけでOK。ご都合の良い日時を選べます。
+        </p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="flex flex-col items-center text-center px-8 py-6 reveal reveal-d2">
+        <div class="w-20 h-20 rounded-full border-2 border-orange-DEFAULT bg-orange-DEFAULT/10 flex items-center justify-center mb-6 relative z-10 glow-sm">
+          <span style="font-family:'Oswald',sans-serif;font-size:1.6rem;font-weight:700;color:#f97316">02</span>
+        </div>
+        <div class="w-8 h-8 rounded-full bg-[#242424] border border-[#2e2e2e] flex items-center justify-center mb-5">
+          <svg class="w-4 h-4 text-orange-DEFAULT" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-base mb-3 tracking-wide">カウンセリング＆レッスン</h3>
+        <p class="text-white/40 text-sm leading-relaxed">
+          まずは15分のカウンセリングで目標・経験・好きな音楽を確認。その後45分のレッスンで、初心者でも弾ける基本フレーズを体験します。
+        </p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="flex flex-col items-center text-center px-8 py-6 reveal reveal-d3">
+        <div class="w-20 h-20 rounded-full border-2 border-orange-DEFAULT bg-orange-DEFAULT/10 flex items-center justify-center mb-6 relative z-10 glow-sm">
+          <span style="font-family:'Oswald',sans-serif;font-size:1.6rem;font-weight:700;color:#f97316">03</span>
+        </div>
+        <div class="w-8 h-8 rounded-full bg-[#242424] border border-[#2e2e2e] flex items-center justify-center mb-5">
+          <svg class="w-4 h-4 text-orange-DEFAULT" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-base mb-3 tracking-wide">入会のご検討</h3>
+        <p class="text-white/40 text-sm leading-relaxed">
+          レッスン後、コースや料金のご案内をします。その場でのプレッシャーは一切なし。じっくり考えていただいて大丈夫です。家族への相談もOKです。
+        </p>
+      </div>
+    </div>
+
+    <!-- 注意書き -->
+    <div class="mt-10 bg-[#242424] border border-[#2e2e2e] rounded-xl p-5 flex items-start gap-4 reveal">
+      <svg class="w-5 h-5 text-orange-DEFAULT flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <p class="text-white/45 text-xs leading-relaxed">
+        <strong class="text-white/70">当日の持ち物はゼロでOKです。</strong>楽器・シューズ・教材など、すべて教室で用意します。動きやすい服装でお越しください。ベースをお持ちの方は持参も歓迎です。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VOICES ===== -->
+<section id="voices" class="py-28 border-t border-[#2e2e2e]">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="mb-16 reveal">
+      <p class="sec-en mb-3">Student Voices</p>
+      <h2 class="sec-ja text-3xl sm:text-4xl">生徒の声</h2>
+      <div class="divider mt-4"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- 声1 -->
+      <div class="card rounded-2xl p-6 flex flex-col reveal reveal-d1">
+        <div class="flex items-center gap-1 mb-4 text-orange-DEFAULT text-lg">★★★★★</div>
+        <p class="text-white/60 text-sm leading-relaxed flex-1 mb-6">
+          「全くの初心者でしたが、入会して3ヶ月でバンドのコピー曲を通して弾けるようになりました。先生が弾けない理由を丁寧に分析してくれるので、練習の方向性が明確になります。週1回のレッスンが毎回楽しみです。」
+        </p>
+        <div class="flex items-center gap-3 pt-5 border-t border-[#2e2e2e]">
+          <img src="https://placehold.co/48x48/2a2a2a/f97316?text=T"
+               alt="T.M様" class="w-12 h-12 rounded-full object-cover">
+          <div>
+            <p class="font-bold text-sm">T.M 様</p>
+            <p class="text-xs text-white/35">30代・会社員 / 入会7ヶ月</p>
+            <p class="text-xs text-orange-DEFAULT mt-0.5">月4回コース</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 声2 -->
+      <div class="card rounded-2xl p-6 flex flex-col reveal reveal-d2">
+        <div class="flex items-center gap-1 mb-4 text-orange-DEFAULT text-lg">★★★★★</div>
+        <p class="text-white/60 text-sm leading-relaxed flex-1 mb-6">
+          「友人の結婚式で演奏したくて入会しました。目標日まで3ヶ月しかありませんでしたが、先生が「絶対間に合わせる」と本番に向けた特訓プランを組んでくれて、当日は無事演奏できました。涙が出ました。」
+        </p>
+        <div class="flex items-center gap-3 pt-5 border-t border-[#2e2e2e]">
+          <img src="https://placehold.co/48x48/2a2a2a/f97316?text=K"
+               alt="K.Y様" class="w-12 h-12 rounded-full object-cover">
+          <div>
+            <p class="font-bold text-sm">K.Y 様</p>
+            <p class="text-xs text-white/35">20代・学生 / 入会4ヶ月</p>
+            <p class="text-xs text-orange-DEFAULT mt-0.5">集中コース</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 声3 -->
+      <div class="card rounded-2xl p-6 flex flex-col reveal reveal-d3">
+        <div class="flex items-center gap-1 mb-4 text-orange-DEFAULT text-lg">★★★★★</div>
+        <p class="text-white/60 text-sm leading-relaxed flex-1 mb-6">
+          「他の教室にも通っていたことがあるのですが、BASS STUDIOは先生が現役プロなので教え方の説得力が違います。音楽理論とテクニックを並行して教えてもらえるので、セッションにも自信が持てるようになりました。」
+        </p>
+        <div class="flex items-center gap-3 pt-5 border-t border-[#2e2e2e]">
+          <img src="https://placehold.co/48x48/2a2a2a/f97316?text=S"
+               alt="S.H様" class="w-12 h-12 rounded-full object-cover">
+          <div>
+            <p class="font-bold text-sm">S.H 様</p>
+            <p class="text-xs text-white/35">40代・自営業 / 入会1年2ヶ月</p>
+            <p class="text-xs text-orange-DEFAULT mt-0.5">月4回コース</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" class="py-28 border-t border-[#2e2e2e]">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="mb-16 reveal">
+      <p class="sec-en mb-3">FAQ</p>
+      <h2 class="sec-ja text-3xl sm:text-4xl">よくある質問</h2>
+      <div class="divider mt-4"></div>
+    </div>
+
+    <div class="space-y-3">
+
+      <!-- Q1 -->
+      <details class="group bg-[#242424] border border-[#2e2e2e] hover:border-orange-DEFAULT/30 rounded-xl overflow-hidden transition reveal reveal-d1">
+        <summary class="flex items-center justify-between px-6 py-5 cursor-pointer">
+          <div class="flex items-start gap-3">
+            <span class="text-orange-DEFAULT font-bold text-sm flex-shrink-0 mt-0.5">Q.</span>
+            <span class="text-sm font-medium text-white/80">楽器を持っていなくても通えますか？</span>
+          </div>
+          <span class="faq-icon text-white/30 text-xl flex-shrink-0 ml-4 leading-none">+</span>
+        </summary>
+        <div class="px-6 pb-5 pt-1 border-t border-[#2e2e2e]">
+          <div class="flex gap-3">
+            <span class="text-white/40 font-bold text-sm flex-shrink-0 mt-0.5">A.</span>
+            <p class="text-white/45 text-sm leading-relaxed">
+              はい、まったく問題ありません。スタジオにFENDER・Gibsonなどのベースを複数台用意しています。体験レッスン・本入会後もすべて無料でご使用いただけます。将来的に自分のベースを購入したい方には、予算に合った機種選びのアドバイスも行っています。
+            </p>
+          </div>
+        </div>
+      </details>
+
+      <!-- Q2 -->
+      <details class="group bg-[#242424] border border-[#2e2e2e] hover:border-orange-DEFAULT/30 rounded-xl overflow-hidden transition reveal reveal-d2">
+        <summary class="flex items-center justify-between px-6 py-5 cursor-pointer">
+          <div class="flex items-start gap-3">
+            <span class="text-orange-DEFAULT font-bold text-sm flex-shrink-0 mt-0.5">Q.</span>
+            <span class="text-sm font-medium text-white/80">音楽経験がなくても始められますか？</span>
+          </div>
+          <span class="faq-icon text-white/30 text-xl flex-shrink-0 ml-4 leading-none">+</span>
+        </summary>
+        <div class="px-6 pb-5 pt-1 border-t border-[#2e2e2e]">
+          <div class="flex gap-3">
+            <span class="text-white/40 font-bold text-sm flex-shrink-0 mt-0.5">A.</span>
+            <p class="text-white/45 text-sm leading-relaxed">
+              もちろん大歓迎です。現在通っている生徒の約6割が全くの音楽未経験からスタートしています。楽譜が読めなくても、リズム感に自信がなくても大丈夫。「弾きたいという気持ち」だけ持ってきてください。体験レッスンで実際に音が出る楽しさを感じていただけます。
+            </p>
+          </div>
+        </div>
+      </details>
+
+      <!-- Q3 -->
+      <details class="group bg-[#242424] border border-[#2e2e2e] hover:border-orange-DEFAULT/30 rounded-xl overflow-hidden transition reveal reveal-d3">
+        <summary class="flex items-center justify-between px-6 py-5 cursor-pointer">
+          <div class="flex items-start gap-3">
+            <span class="text-orange-DEFAULT font-bold text-sm flex-shrink-0 mt-0.5">Q.</span>
+            <span class="text-sm font-medium text-white/80">仕事が忙しく、毎週通えるか不安です。</span>
+          </div>
+          <span class="faq-icon text-white/30 text-xl flex-shrink-0 ml-4 leading-none">+</span>
+        </summary>
+        <div class="px-6 pb-5 pt-1 border-t border-[#2e2e2e]">
+          <div class="flex gap-3">
+            <span class="text-white/40 font-bold text-sm flex-shrink-0 mt-0.5">A.</span>
+            <p class="text-white/45 text-sm leading-relaxed">
+              ご安心ください。月2回から通えるライトコースをご用意しています。また、月1回の振替制度もありますので、急な仕事や出張でも柔軟に対応できます。在籍生の多くが社会人で、平日夜・土日を中心にレッスンされています。まずは体験レッスンで生活スタイルに合ったプランを一緒に考えましょう。
+            </p>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section id="cta" class="py-28 border-t border-[#2e2e2e] relative overflow-hidden">
+  <!-- 背景 -->
+  <div class="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] via-[#1a1a1a] to-[#2a1a0a]"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-orange-DEFAULT/5 blur-[140px] pointer-events-none"></div>
+
+  <div class="relative max-w-2xl mx-auto px-5 text-center">
+    <div class="reveal">
+      <p class="sec-en mb-5">Free Trial Lesson</p>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-5 leading-[1.2]">
+        まず、弾いてみよう。<br>
+        <span class="grad-text text-glow">その一音が、全部変える。</span>
+      </h2>
+      <p class="text-white/45 text-sm leading-relaxed mb-10">
+        体験レッスンは¥3,000、60分。楽器不要・入会プレッシャーなし。<br>
+        あなたの「弾きたい」を、全力でサポートします。
+      </p>
+    </div>
+
+    <!-- フォーム風CTA -->
+    <div class="bg-[#242424] border border-[#2e2e2e] rounded-2xl p-8 text-left reveal reveal-d1">
+      <h3 class="font-bold text-base mb-1.5 tracking-wide">体験レッスンを予約する</h3>
+      <p class="text-white/35 text-xs mb-6">お名前と希望日時をお送りください。24時間以内にご連絡します。</p>
+
+      <form class="space-y-4" onsubmit="handleSubmit(event)">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-white/50 mb-1.5 tracking-wide">お名前 <span class="text-orange-DEFAULT">*</span></label>
+            <input type="text" id="f-name" placeholder="山田 太郎" required
+              class="w-full bg-[#1a1a1a] border border-[#3a3a3a] rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-orange-DEFAULT transition">
+          </div>
+          <div>
+            <label class="block text-xs text-white/50 mb-1.5 tracking-wide">電話番号 <span class="text-orange-DEFAULT">*</span></label>
+            <input type="tel" id="f-tel" placeholder="090-0000-0000" required
+              class="w-full bg-[#1a1a1a] border border-[#3a3a3a] rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-orange-DEFAULT transition">
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-white/50 mb-1.5 tracking-wide">メールアドレス <span class="text-orange-DEFAULT">*</span></label>
+          <input type="email" id="f-email" placeholder="example@email.com" required
+            class="w-full bg-[#1a1a1a] border border-[#3a3a3a] rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-orange-DEFAULT transition">
+        </div>
+        <div>
+          <label class="block text-xs text-white/50 mb-1.5 tracking-wide">ご希望日時（第1〜第3希望）</label>
+          <textarea id="f-datetime" rows="2" placeholder="例：土曜14時〜、平日夜19時以降"
+            class="w-full bg-[#1a1a1a] border border-[#3a3a3a] rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-orange-DEFAULT transition resize-none"></textarea>
+        </div>
+        <div>
+          <label class="block text-xs text-white/50 mb-1.5 tracking-wide">ベース歴・目標（任意）</label>
+          <textarea id="f-goal" rows="2" placeholder="例：完全初心者。バンドでX JAPANを弾きたい"
+            class="w-full bg-[#1a1a1a] border border-[#3a3a3a] rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-orange-DEFAULT transition resize-none"></textarea>
+        </div>
+
+        <!-- エラー表示 -->
+        <div id="form-error" class="hidden text-xs text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg px-4 py-2"></div>
+
+        <!-- ローディング/送信ボタン -->
+        <button type="submit" id="submit-btn"
+          class="w-full py-4 bg-orange-DEFAULT hover:bg-orange-dark text-white font-bold rounded-xl text-sm tracking-wide transition glow flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          無料体験レッスンを予約する
+        </button>
+      </form>
+
+      <!-- サンクスメッセージ（初期非表示） -->
+      <div id="thankyou" class="hidden text-center py-6">
+        <div class="w-14 h-14 rounded-full bg-orange-DEFAULT/15 border border-orange-DEFAULT/30 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-7 h-7 text-orange-DEFAULT" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2">お申し込みありがとうございます！</h3>
+        <p class="text-white/45 text-sm leading-relaxed">
+          24時間以内にご連絡いたします。<br>
+          お気軽にお待ちください。
+        </p>
+      </div>
+
+      <!-- 補足 -->
+      <div class="mt-5 flex flex-wrap items-center justify-center gap-5 text-xs text-white/25">
+        <span class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-orange-DEFAULT/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          入会プレッシャーなし
+        </span>
+        <span class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-orange-DEFAULT/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          楽器・教材すべて不要
+        </span>
+        <span class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-orange-DEFAULT/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          24時間以内に返信
+        </span>
+      </div>
+    </div>
+
+    <!-- 電話CTA -->
+    <div class="mt-6 text-center reveal reveal-d2">
+      <p class="text-white/25 text-xs mb-2">お電話でのお問い合わせ</p>
+      <a href="tel:0312345678" class="text-2xl font-black tracking-widest text-white/70 hover:text-orange-DEFAULT transition" style="font-family:'Oswald',sans-serif">
+        03-1234-5678
+      </a>
+      <p class="text-white/25 text-xs mt-1">受付：平日 11:00〜21:00 / 土日祝 10:00〜20:00</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="border-t border-[#2e2e2e] bg-[#111] py-10">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-8">
+      <!-- ロゴ -->
+      <div class="flex items-center gap-3">
+        <span class="w-8 h-8 rounded bg-orange-DEFAULT flex items-center justify-center flex-shrink-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+          </svg>
+        </span>
+        <div class="leading-none">
+          <p style="font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:0.15em">BASS STUDIO</p>
+          <p class="text-[9px] text-white/30 tracking-[0.25em] uppercase">ベース専門教室</p>
+        </div>
+      </div>
+      <!-- ナビ -->
+      <nav class="flex flex-wrap gap-5 text-xs text-white/30">
+        <a href="#dreams" class="hover:text-white/60 transition">こんな方へ</a>
+        <a href="#reasons" class="hover:text-white/60 transition">選ばれる理由</a>
+        <a href="#courses" class="hover:text-white/60 transition">コース・料金</a>
+        <a href="#voices" class="hover:text-white/60 transition">生徒の声</a>
+        <a href="#faq" class="hover:text-white/60 transition">FAQ</a>
+        <a href="#cta" class="hover:text-white/60 transition">体験レッスン</a>
+      </nav>
+    </div>
+    <!-- 教室情報 -->
+    <div class="border-t border-[#2a2a2a] pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <p class="text-xs text-white/25 leading-relaxed">
+        〒000-0000 東京都○○区○○1-2-3 ○○ビル3F<br>
+        ギター・ドラム・ボーカルスクールも併設 | 他科目生割引あり
+      </p>
+      <p class="text-xs text-white/20">&copy; 2026 BASS STUDIO. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ページトップ -->
+<a href="#top"
+   class="fixed bottom-6 right-6 w-11 h-11 bg-[#242424] border border-[#3a3a3a] hover:border-orange-DEFAULT/50 rounded-xl flex items-center justify-center z-40 transition"
+   aria-label="ページトップへ">
+  <svg class="w-4 h-4 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+  </svg>
+</a>
+
+<script>
+  // スクロールアニメーション
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+
+  // ヒーローは即時
+  document.querySelectorAll('#top .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 100 + i * 130);
+  });
+
+  // ヘッダースクロール
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.style.background = window.scrollY > 60
+      ? 'rgba(17,17,17,0.98)'
+      : 'rgba(26,26,26,0.9)';
+  });
+
+  // フォーム送信（デモ）
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const err = document.getElementById('form-error');
+    const form = e.target;
+
+    // 簡易バリデーション
+    const name  = document.getElementById('f-name').value.trim();
+    const tel   = document.getElementById('f-tel').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+
+    if (!name) { showError('お名前を入力してください。'); return; }
+    if (!/^[\d\-+\(\)\s]{10,}$/.test(tel.replace(/-/g,''))) {
+      if (tel.replace(/[^\d]/g,'').length < 10) { showError('電話番号を正しく入力してください。'); return; }
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('メールアドレスを正しく入力してください。'); return; }
+
+    err.classList.add('hidden');
+    btn.disabled = true;
+    btn.innerHTML = '<svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg> 送信中...';
+
+    setTimeout(() => {
+      form.classList.add('hidden');
+      document.getElementById('thankyou').classList.remove('hidden');
+    }, 1400);
+
+    function showError(msg) {
+      err.textContent = msg;
+      err.classList.remove('hidden');
+    }
+  }
+</script>
+</body>
+</html>
