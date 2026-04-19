@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hair Salon BLOOM | 渋谷・完全予約制プライベートサロン</title>
+  <meta name="description" content="渋谷駅徒歩3分。30〜50代女性に向けた完全予約制のプライベートヘアサロン。髪質改善トリートメント専門。あなたの「似合う」を一緒に見つけます。">
+  <meta property="og:title" content="Hair Salon BLOOM | 渋谷・完全予約制プライベートサロン">
+  <meta property="og:description" content="渋谷駅徒歩3分。髪質改善トリートメント専門の完全予約制サロン。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://placehold.co/1200x630/f0ede8/6b5c47?text=Hair+Salon+BLOOM">
+  <meta property="og:url" content="https://bloom-salon.example.com">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 62.5%; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: #404040;
+      background: #ffffff;
+      line-height: 2;
+      letter-spacing: 0.08em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; width: 100%; height: auto; vertical-align: middle; }
+    a { color: inherit; text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.7; }
+    ul, ol { list-style: none; }
+
+    /* ===== LAYOUT ===== */
+    .w-inn {
+      width: calc(100% - 160px);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section { margin-top: 140px; }
+    .section:first-of-type { margin-top: 0; }
+
+    /* ===== SECTION HEADING ===== */
+    .sec-head { text-align: center; margin-bottom: 60px; }
+    .sec-label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #b9a978;
+      display: block;
+      margin-bottom: 16px;
+    }
+    .sec-title {
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: #404040;
+      letter-spacing: 0.15em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .sec-title::before,
+    .sec-title::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: #404040;
+      display: inline-block;
+    }
+    .sec-sub {
+      margin-top: 16px;
+      font-size: 1.3rem;
+      color: #888;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== BUTTON ===== */
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 28px 10px 22px;
+      background: #f0ede8;
+      border-radius: 40px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #404040;
+      transition: background 0.2s, border-radius 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-pill::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-right: 1.5px solid #b9a978;
+      border-top: 1.5px solid #b9a978;
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .btn-pill:hover { background: #e8e4de; border-radius: 4px; opacity: 1; }
+
+    .btn-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 36px;
+      background: #404040;
+      color: #fff;
+      border-radius: 40px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: background 0.2s, border-radius 0.2s;
+    }
+    .btn-dark:hover { background: #2a2a2a; border-radius: 4px; opacity: 1; }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 34px;
+      border: 1px solid #404040;
+      color: #404040;
+      border-radius: 40px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s, border-radius 0.2s;
+    }
+    .btn-outline:hover { background: #404040; color: #fff; border-radius: 4px; opacity: 1; }
+
+    .btn-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 34px;
+      background: #06C755;
+      color: #fff;
+      border-radius: 40px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      transition: background 0.2s, border-radius 0.2s;
+    }
+    .btn-line:hover { background: #05a847; border-radius: 4px; opacity: 1; }
+
+    /* ===== HEADER / NAV ===== */
+    #header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #eeebe6;
+      transition: all 0.4s;
+    }
+    #header .header-inner {
+      width: calc(100% - 80px);
+      margin: 0 auto;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 600;
+      font-size: 1.8rem;
+      letter-spacing: 0.25em;
+      color: #404040;
+      line-height: 1;
+    }
+    .logo span {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: #b9a978;
+      margin-bottom: 2px;
+    }
+    #header nav { display: flex; align-items: center; gap: 36px; }
+    #header nav a {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #666;
+      position: relative;
+    }
+    #header nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #b9a978;
+      transition: width 0.3s;
+    }
+    #header nav a:hover { color: #404040; opacity: 1; }
+    #header nav a:hover::after { width: 100%; }
+    .nav-reserve {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 8px 22px;
+      background: #404040;
+      color: #fff !important;
+      border-radius: 40px;
+      transition: background 0.2s !important;
+    }
+    .nav-reserve:hover { background: #2a2a2a; opacity: 1 !important; }
+    .nav-reserve::after { display: none !important; }
+
+    /* ハンバーガー */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: #404040;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.is-open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .hamburger.is-open span:nth-child(2) { opacity: 0; }
+    .hamburger.is-open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* モバイルメニュー */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-top: 1px solid #eeebe6;
+      z-index: 99;
+      padding: 30px 40px;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .mobile-menu.is-open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #404040;
+      border-bottom: 1px solid #f0ede8;
+      padding-bottom: 16px;
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      background: url('https://placehold.co/1920x1080/d6cdc2/ffffff?text=Hair+Salon+BLOOM') center/cover no-repeat;
+    }
+    .hero-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(255,255,255,0.7) 0%,
+        rgba(255,255,255,0.2) 60%,
+        rgba(255,255,255,0) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: calc(100% - 160px);
+      margin: 0 auto;
+      padding-bottom: 80px;
+    }
+    .hero-label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #b9a978;
+      margin-bottom: 20px;
+    }
+    .hero-copy {
+      font-size: 3.8rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      line-height: 1.6;
+      color: #2a2a2a;
+      margin-bottom: 24px;
+    }
+    .hero-sub {
+      font-size: 1.4rem;
+      color: #666;
+      letter-spacing: 0.1em;
+      line-height: 2;
+      margin-bottom: 40px;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    /* スクロールダウン */
+    .scrolldown {
+      position: absolute;
+      bottom: 40px;
+      right: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .scrolldown p {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #888;
+      writing-mode: vertical-rl;
+    }
+    .scrolldown-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, #b9a978, transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ===== INTRO BANNER ===== */
+    #intro {
+      background: #f8f6f2;
+      padding: 28px 0;
+      margin-top: 0;
+      border-top: 1px solid #eeebe6;
+    }
+    #intro .w-inn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .intro-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2rem;
+      color: #666;
+      letter-spacing: 0.08em;
+    }
+    .intro-item::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #b9a978;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ===== CONCEPT ===== */
+    #concept { margin-top: 140px; }
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #eeebe6;
+      margin-top: 60px;
+    }
+    .concept-item {
+      background: #fff;
+      padding: 52px 40px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+    .concept-item:hover { background: #faf8f5; }
+    .concept-num {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 3.6rem;
+      font-weight: 300;
+      color: #eeebe6;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .concept-icon {
+      width: 44px;
+      height: 44px;
+      margin: 0 auto 20px;
+      color: #b9a978;
+    }
+    .concept-ttl {
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+      color: #2a2a2a;
+    }
+    .concept-txt {
+      font-size: 1.3rem;
+      color: #777;
+      line-height: 2;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== REASONS ===== */
+    #reasons { margin-top: 140px; }
+    .reason-list { margin-top: 0; }
+    .reason-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 480px;
+    }
+    .reason-item:nth-child(even) { direction: rtl; }
+    .reason-item:nth-child(even) .reason-body { direction: ltr; }
+    .reason-img {
+      overflow: hidden;
+      position: relative;
+    }
+    .reason-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .reason-item:hover .reason-img img { transform: scale(1.03); }
+    .reason-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 70px;
+      background: #faf8f5;
+    }
+    .reason-num {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #b9a978;
+      margin-bottom: 20px;
+    }
+    .reason-ttl {
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: #2a2a2a;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .reason-txt {
+      font-size: 1.3rem;
+      color: #666;
+      line-height: 2.2;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== MENU ===== */
+    #menu { margin-top: 140px; }
+    .menu-table-wrap {
+      overflow-x: auto;
+      margin-top: 0;
+      border: 1px solid #eeebe6;
+    }
+    .menu-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1.3rem;
+    }
+    .menu-table thead tr {
+      background: #404040;
+      color: #fff;
+    }
+    .menu-table th {
+      padding: 16px 28px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-align: left;
+    }
+    .menu-table th:last-child { text-align: right; }
+    .menu-table td {
+      padding: 22px 28px;
+      border-bottom: 1px solid #f0ede8;
+      vertical-align: middle;
+    }
+    .menu-table td:last-child { text-align: right; }
+    .menu-table tr:last-child td { border-bottom: none; }
+    .menu-table tr:nth-child(even) { background: #faf8f5; }
+    .menu-table .price {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: #2a2a2a;
+      letter-spacing: 0.05em;
+    }
+    .menu-note { font-size: 1.1rem; color: #aaa; margin-top: 16px; letter-spacing: 0.05em; }
+    .badge-popular {
+      display: inline-block;
+      font-size: 1rem;
+      background: #b9a978;
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.1em;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    .menu-sub { font-size: 1.1rem; color: #aaa; margin-top: 4px; }
+
+    /* ===== REVIEWS ===== */
+    #reviews { margin-top: 140px; }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 0;
+    }
+    .review-card {
+      padding: 36px 32px;
+      border: 1px solid #eeebe6;
+      background: #fff;
+      transition: box-shadow 0.3s;
+    }
+    .review-card:hover { box-shadow: 0 12px 40px -10px rgba(0,0,0,0.08); }
+    .review-stars {
+      font-size: 1.4rem;
+      color: #b9a978;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .review-type {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+    .review-body {
+      font-size: 1.3rem;
+      color: #555;
+      line-height: 2;
+      letter-spacing: 0.05em;
+    }
+    .review-footer {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #f0ede8;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .review-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .review-name { font-size: 1.3rem; color: #2a2a2a; }
+    .review-meta { font-size: 1.1rem; color: #aaa; }
+
+    /* ===== STYLIST ===== */
+    #stylist { margin-top: 140px; }
+    .stylist-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 60px;
+    }
+    .stylist-card {}
+    .stylist-img {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .stylist-img img { height: 100%; object-fit: cover; transition: transform 0.6s; }
+    .stylist-card:hover .stylist-img img { transform: scale(1.03); }
+    .stylist-name {
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+      color: #2a2a2a;
+    }
+    .stylist-role {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #b9a978;
+      margin-bottom: 20px;
+    }
+    .stylist-career {
+      font-size: 1.2rem;
+      color: #666;
+      line-height: 2.2;
+      letter-spacing: 0.05em;
+      background: #faf8f5;
+      padding: 20px 24px;
+    }
+    .stylist-career li::before { content: '—  '; color: #b9a978; }
+    .stylist-message {
+      margin-top: 16px;
+      font-size: 1.3rem;
+      color: #666;
+      line-height: 2;
+      letter-spacing: 0.05em;
+      font-style: italic;
+    }
+
+    /* ===== ACCESS ===== */
+    #access { margin-top: 140px; }
+    .access-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .access-map {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .access-map img { height: 100%; object-fit: cover; }
+    .access-info table { width: 100%; border-collapse: collapse; font-size: 1.3rem; }
+    .access-info th {
+      padding: 16px 0;
+      font-weight: 400;
+      color: #b9a978;
+      font-family: 'Josefin Sans', sans-serif;
+      letter-spacing: 0.15em;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      vertical-align: top;
+      width: 120px;
+      border-bottom: 1px solid #f0ede8;
+    }
+    .access-info td {
+      padding: 16px 0;
+      color: #555;
+      line-height: 1.9;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid #f0ede8;
+    }
+    .access-info tr:last-child th,
+    .access-info tr:last-child td { border-bottom: none; }
+    .access-tel {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: #2a2a2a;
+    }
+
+    /* ===== RESERVATION ===== */
+    #reservation { margin-top: 140px; }
+    .reservation-inner {
+      background: #faf8f5;
+      border: 1px solid #eeebe6;
+      padding: 60px;
+    }
+    .reservation-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2rem;
+      color: #888;
+      letter-spacing: 0.05em;
+      margin-bottom: 36px;
+    }
+    .reservation-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #b9a978;
+      position: relative;
+    }
+    .reservation-badge-dot::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 1px solid #b9a978;
+      animation: badgePulse 2s ease-in-out infinite;
+    }
+    @keyframes badgePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0; transform: scale(1.6); }
+    }
+    .calendly-wrap {
+      background: #fff;
+      border: 1px solid #eeebe6;
+      overflow: hidden;
+    }
+    .reservation-divider {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin: 44px 0;
+      color: #ccc;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .reservation-divider::before,
+    .reservation-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #eeebe6;
+    }
+    .alt-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ===== CTA ===== */
+    #cta {
+      margin-top: 140px;
+      background: #2a2a2a;
+      padding: 100px 0;
+      text-align: center;
+    }
+    .cta-label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #b9a978;
+      margin-bottom: 24px;
+    }
+    .cta-copy {
+      font-size: 3rem;
+      font-weight: 300;
+      color: #fff;
+      letter-spacing: 0.15em;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .cta-sub { font-size: 1.3rem; color: #888; letter-spacing: 0.05em; margin-bottom: 48px; }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-btns .btn-outline { border-color: #fff; color: #fff; }
+    .cta-btns .btn-outline:hover { background: #fff; color: #404040; }
+    .cta-note { margin-top: 28px; font-size: 1.1rem; color: #666; letter-spacing: 0.05em; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #f8f6f2;
+      padding: 60px 0 32px;
+      border-top: 1px solid #eeebe6;
+    }
+    .footer-inner {
+      width: calc(100% - 80px);
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid #eeebe6;
+      flex-wrap: wrap;
+    }
+    .footer-logo { font-family: 'Josefin Sans', sans-serif; font-size: 2rem; letter-spacing: 0.25em; color: #2a2a2a; }
+    .footer-logo small { display: block; font-size: 1rem; color: #b9a978; letter-spacing: 0.3em; margin-bottom: 4px; }
+    .footer-info { font-size: 1.2rem; color: #888; line-height: 2; letter-spacing: 0.05em; margin-top: 12px; }
+    .footer-nav { display: flex; flex-direction: column; gap: 12px; text-align: right; }
+    .footer-nav a {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #888;
+    }
+    .footer-bottom {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #bbb;
+      letter-spacing: 0.1em;
+    }
+
+    /* ===== PAGE TOP ===== */
+    .page-top {
+      position: fixed;
+      bottom: 32px;
+      right: 40px;
+      width: 44px;
+      height: 44px;
+      background: #fff;
+      border: 1px solid #eeebe6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .page-top:hover { background: #f0ede8; opacity: 1; }
+    .page-top svg { width: 14px; height: 14px; color: #404040; }
+
+    /* ===== ANIMATION ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .fade-up.is-visible { opacity: 1; transform: translateY(0); }
+    .fade-up-d1 { transition-delay: 0.1s; }
+    .fade-up-d2 { transition-delay: 0.2s; }
+    .fade-up-d3 { transition-delay: 0.3s; }
+
+    /* ===== RESPONSIVE ===== */
+    @media screen and (max-width: 1024px) {
+      .w-inn { width: calc(100% - 80px); }
+      .hero-content { width: calc(100% - 80px); }
+      .hero-copy { font-size: 3rem; }
+      .reason-body { padding: 40px 48px; }
+    }
+
+    @media screen and (max-width: 768px) {
+      html { font-size: 58%; }
+      .w-inn { width: calc(100% - 48px); }
+      .sec-title { font-size: 1.8rem; gap: 12px; }
+      .sec-title::before, .sec-title::after { width: 24px; }
+      .section { margin-top: 80px; }
+      #concept { margin-top: 80px; }
+      #reasons { margin-top: 80px; }
+      #menu { margin-top: 80px; }
+      #reviews { margin-top: 80px; }
+      #stylist { margin-top: 80px; }
+      #access { margin-top: 80px; }
+      #reservation { margin-top: 80px; }
+      #cta { margin-top: 80px; padding: 72px 0; }
+
+      /* ヘッダー */
+      #header nav { display: none; }
+      .hamburger { display: flex; }
+      #header .header-inner { width: calc(100% - 48px); }
+
+      /* ヒーロー */
+      .hero-content { width: calc(100% - 48px); padding-bottom: 60px; }
+      .hero-copy { font-size: 2.8rem; }
+      .scrolldown { right: 24px; }
+      .hero-img::after {
+        background: linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.6) 0%,
+          rgba(255,255,255,0.2) 100%
+        );
+      }
+
+      /* コンセプト */
+      .concept-grid { grid-template-columns: 1fr; }
+
+      /* 理由 */
+      .reason-item { grid-template-columns: 1fr; min-height: auto; direction: ltr !important; }
+      .reason-img { aspect-ratio: 16/9; }
+      .reason-body { padding: 36px 28px; }
+
+      /* レビュー */
+      .reviews-grid { grid-template-columns: 1fr; }
+
+      /* スタイリスト */
+      .stylist-grid { grid-template-columns: 1fr; gap: 48px; }
+      .stylist-img { aspect-ratio: 4/3; }
+
+      /* アクセス */
+      .access-grid { grid-template-columns: 1fr; gap: 36px; }
+
+      /* 予約 */
+      .reservation-inner { padding: 36px 24px; }
+      .alt-btns { flex-direction: column; align-items: center; }
+
+      /* CTA */
+      .cta-copy { font-size: 2.4rem; }
+      .cta-btns { flex-direction: column; align-items: center; }
+
+      /* フッター */
+      .footer-inner { width: calc(100% - 48px); }
+      .footer-top { flex-direction: column; }
+      .footer-nav { text-align: left; flex-direction: row; flex-wrap: wrap; gap: 16px 24px; }
+
+      /* イントロ */
+      #intro .w-inn { flex-direction: column; gap: 14px; align-items: flex-start; }
+
+      .page-top { right: 24px; bottom: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header id="header">
+  <div class="header-inner">
+    <a href="#top" class="logo">
+      <span>Hair Salon</span>
+      BLOOM
+    </a>
+    <nav>
+      <a href="#concept">Concept</a>
+      <a href="#reasons">Reason</a>
+      <a href="#menu">Menu</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#stylist">Stylist</a>
+      <a href="#access">Access</a>
+      <a href="#reservation" class="nav-reserve">Reserve</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- モバイルメニュー -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#concept"     onclick="closeMobileMenu()">Concept</a>
+  <a href="#reasons"     onclick="closeMobileMenu()">Reason</a>
+  <a href="#menu"        onclick="closeMobileMenu()">Menu</a>
+  <a href="#reviews"     onclick="closeMobileMenu()">Reviews</a>
+  <a href="#stylist"     onclick="closeMobileMenu()">Stylist</a>
+  <a href="#access"      onclick="closeMobileMenu()">Access</a>
+  <a href="#reservation" onclick="closeMobileMenu()">Reserve</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section id="top">
+  <div id="hero">
+    <div class="hero-img"></div>
+    <div class="hero-content">
+      <p class="hero-label fade-up">Hair Salon BLOOM — Shibuya</p>
+      <h1 class="hero-copy fade-up fade-up-d1">
+        あなたの&ldquo;似合う&rdquo;を、<br>見つける場所。
+      </h1>
+      <p class="hero-sub fade-up fade-up-d2">
+        渋谷駅徒歩3分・完全予約制のプライベートサロン<br>
+        髪質改善トリートメント専門
+      </p>
+      <div class="hero-btns fade-up fade-up-d3">
+        <a href="#reservation" class="btn-dark">Reserve Online</a>
+        <a href="tel:0312345678" class="btn-outline">03-1234-5678</a>
+      </div>
+    </div>
+    <div class="scrolldown">
+      <p>Scroll</p>
+      <div class="scrolldown-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INTRO BANNER ===== -->
+<div id="intro">
+  <div class="w-inn">
+    <div class="intro-item">完全予約制プライベートサロン</div>
+    <div class="intro-item">髪質改善トリートメント専門</div>
+    <div class="intro-item">渋谷駅 ハチ公口 徒歩3分</div>
+    <div class="intro-item">初回カウンセリング無料</div>
+  </div>
+</div>
+
+<!-- ===== CONCEPT ===== -->
+<section id="concept" class="section">
+  <div class="w-inn">
+    <div class="sec-head fade-up">
+      <span class="sec-label">Concept</span>
+      <h2 class="sec-title">こだわり</h2>
+      <p class="sec-sub">BLOOMが大切にしている3つのこと</p>
+    </div>
+    <div class="concept-grid">
+      <div class="concept-item fade-up">
+        <div class="concept-num">01</div>
+        <svg class="concept-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"
+            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+        </svg>
+        <h3 class="concept-ttl">プライベートな空間</h3>
+        <p class="concept-txt">
+          完全予約制だから、他のお客様を気にせずリラックスできます。ゆったりとしたカウンセリング時間で、あなたの髪の悩みを丁寧にヒアリングします。
+        </p>
+      </div>
+      <div class="concept-item fade-up fade-up-d1">
+        <div class="concept-num">02</div>
+        <svg class="concept-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"
+            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+        </svg>
+        <h3 class="concept-ttl">髪質改善の専門技術</h3>
+        <p class="concept-txt">
+          酸熱トリートメントをはじめ、一人ひとりの髪質に合わせたオーダーメイドケアを提供。ダメージを補修しながら、サラサラ・ツヤツヤの美髪へ導きます。
+        </p>
+      </div>
+      <div class="concept-item fade-up fade-up-d2">
+        <div class="concept-num">03</div>
+        <svg class="concept-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"
+            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+        </svg>
+        <h3 class="concept-ttl">再現できるスタイル</h3>
+        <p class="concept-txt">
+          施術後は必ずスタイリングレッスンを実施。使うべきアイテムの選び方から、ドライヤーの使い方まで丁寧にお伝えし、自宅での再現をサポートします。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REASONS ===== -->
+<section id="reasons" class="section">
+  <div class="sec-head fade-up w-inn">
+    <span class="sec-label">Why BLOOM</span>
+    <h2 class="sec-title">選ばれる理由</h2>
+  </div>
+  <div class="reason-list">
+    <!-- 理由1 -->
+    <div class="reason-item fade-up">
+      <div class="reason-img">
+        <img src="https://placehold.co/900x600/d6cdc2/ffffff?text=Private+Space" alt="完全プライベートな空間">
+      </div>
+      <div class="reason-body">
+        <p class="reason-num">Reason — 01</p>
+        <h3 class="reason-ttl">完全プライベートな<br>贅沢な空間</h3>
+        <p class="reason-txt">
+          完全予約制だから、他のお客様を気にせずリラックスして過ごせます。ゆったりとしたカウンセリング時間を設け、あなたのライフスタイルや髪の悩みを丁寧にヒアリング。施術中も静かなBGMと共に至福のひとときをお届けします。
+        </p>
+      </div>
+    </div>
+    <!-- 理由2 -->
+    <div class="reason-item fade-up">
+      <div class="reason-img">
+        <img src="https://placehold.co/900x600/c9bfb2/ffffff?text=Hair+Treatment" alt="髪質改善トリートメント">
+      </div>
+      <div class="reason-body">
+        <p class="reason-num">Reason — 02</p>
+        <h3 class="reason-ttl">髪質改善トリートメント<br>専門技術</h3>
+        <p class="reason-txt">
+          酸熱トリートメントをはじめとした最新の髪質改善メニューを専門的に提供。ダメージを補修しながら、サラサラ・ツヤツヤの美髪へ導きます。一人ひとりの髪質に合わせたオーダーメイドケアで、持続性の高い仕上がりを実現します。
+        </p>
+      </div>
+    </div>
+    <!-- 理由3 -->
+    <div class="reason-item fade-up">
+      <div class="reason-img">
+        <img src="https://placehold.co/900x600/b8afa4/ffffff?text=Styling+Lesson" alt="スタイリングレッスン">
+      </div>
+      <div class="reason-body">
+        <p class="reason-num">Reason — 03</p>
+        <h3 class="reason-ttl">自宅でも再現できる<br>スタイリングレッスン</h3>
+        <p class="reason-txt">
+          施術後は必ずスタイリングレッスンを実施。使うべきアイテムの選び方から、ドライヤーやアイロンの使い方まで丁寧にお伝えします。サロンクオリティを毎日の生活に取り入れていただけるよう、しっかりサポートします。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MENU ===== -->
+<section id="menu" class="section">
+  <div class="w-inn">
+    <div class="sec-head fade-up">
+      <span class="sec-label">Menu &amp; Price</span>
+      <h2 class="sec-title">メニュー・料金</h2>
+      <p class="sec-sub">すべて税込価格です。カウンセリング無料。</p>
+    </div>
+    <div class="menu-table-wrap fade-up">
+      <table class="menu-table">
+        <thead>
+          <tr>
+            <th style="width:50%">Menu</th>
+            <th style="width:20%;text-align:center">Time</th>
+            <th style="width:30%">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div>カット</div>
+              <div class="menu-sub">シャンプー・ブロー込み</div>
+            </td>
+            <td style="text-align:center;color:#888;font-size:1.2rem">60 min</td>
+            <td><span class="price">¥6,600</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                カット＋カラー
+                <span class="badge-popular">Popular</span>
+              </div>
+              <div class="menu-sub">グレイカバー・おしゃれ染め対応</div>
+            </td>
+            <td style="text-align:center;color:#888;font-size:1.2rem">120 min</td>
+            <td><span class="price">¥13,200</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div>髪質改善トリートメント</div>
+              <div class="menu-sub">酸熱・オーダーメイド処方</div>
+            </td>
+            <td style="text-align:center;color:#888;font-size:1.2rem">150 min</td>
+            <td><span class="price">¥16,500</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div>カット＋髪質改善トリートメント</div>
+              <div class="menu-sub">最もおすすめのセットメニュー</div>
+            </td>
+            <td style="text-align:center;color:#888;font-size:1.2rem">180 min</td>
+            <td><span class="price">¥22,000</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div>カット＋カラー＋髪質改善</div>
+              <div class="menu-sub">フルケアプレミアムコース</div>
+            </td>
+            <td style="text-align:center;color:#888;font-size:1.2rem">210 min</td>
+            <td><span class="price">¥31,900</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="menu-note fade-up">
+      ※ 料金はカウンセリング後に確定します。追加料金が発生する場合は事前にご説明します。
+    </p>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section id="reviews" class="section">
+  <div class="w-inn">
+    <div class="sec-head fade-up">
+      <span class="sec-label">Reviews</span>
+      <h2 class="sec-title">お客様の声</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card fade-up">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-type">Hair Treatment</div>
+        <p class="review-body">
+          「髪質改善トリートメントを初めて試しましたが、まるで別人の髪のようにツヤツヤになりました！担当していただいた方が私の悩みをとことん聞いてくれて、施術中もずっとリラックスできました。」
+        </p>
+        <div class="review-footer">
+          <div class="review-avatar">
+            <img src="https://placehold.co/42x42/d6cdc2/ffffff?text=M" alt="M.K様">
+          </div>
+          <div>
+            <p class="review-name">M.K 様</p>
+            <p class="review-meta">40代・主婦</p>
+          </div>
+        </div>
+      </div>
+      <div class="review-card fade-up fade-up-d1">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-type">Cut &amp; Color</div>
+        <p class="review-body">
+          「完全予約制なので他のお客さんの目を気にせず、ゆっくり相談できるのがとても良かったです。白髪が気になっていたのですが、自然な仕上がりで周りからも若くなったと言われました。」
+        </p>
+        <div class="review-footer">
+          <div class="review-avatar">
+            <img src="https://placehold.co/42x42/c9bfb2/ffffff?text=Y" alt="Y.T様">
+          </div>
+          <div>
+            <p class="review-name">Y.T 様</p>
+            <p class="review-meta">50代・会社員</p>
+          </div>
+        </div>
+      </div>
+      <div class="review-card fade-up fade-up-d2">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-type">Styling Lesson</div>
+        <p class="review-body">
+          「スタイリングレッスンが特に嬉しかったです！今まで自宅でうまくセットできなかったのですが、教えていただいた方法でサロン帰りみたいな髪が再現できるようになりました。」
+        </p>
+        <div class="review-footer">
+          <div class="review-avatar">
+            <img src="https://placehold.co/42x42/b8afa4/ffffff?text=A" alt="A.S様">
+          </div>
+          <div>
+            <p class="review-name">A.S 様</p>
+            <p class="review-meta">30代・フリーランス</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STYLIST ===== -->
+<section id="stylist" class="section">
+  <div class="w-inn">
+    <div class="sec-head fade-up">
+      <span class="sec-label">Stylist</span>
+      <h2 class="sec-title">スタイリスト</h2>
+    </div>
+    <div class="stylist-grid">
+      <div class="stylist-card fade-up">
+        <div class="stylist-img">
+          <img src="https://placehold.co/600x800/d6cdc2/ffffff?text=Misaki+Takahashi" alt="高橋 美咲">
+        </div>
+        <h3 class="stylist-name">高橋 美咲</h3>
+        <p class="stylist-role">Owner Stylist</p>
+        <ul class="stylist-career">
+          <li>美容師歴15年</li>
+          <li>大手サロン渋谷店 副店長を経て独立</li>
+          <li>酸熱トリートメント認定スペシャリスト</li>
+          <li>海外研修（パリ・ロンドン）経験あり</li>
+        </ul>
+        <p class="stylist-message">
+          「お客様お一人おひとりの個性と向き合い、その方だけの美しさを引き出すことを大切にしています。」
+        </p>
+      </div>
+      <div class="stylist-card fade-up fade-up-d1">
+        <div class="stylist-img">
+          <img src="https://placehold.co/600x800/c9bfb2/ffffff?text=Sakura+Nakamura" alt="中村 さくら">
+        </div>
+        <h3 class="stylist-name">中村 さくら</h3>
+        <p class="stylist-role">Color Specialist</p>
+        <ul class="stylist-career">
+          <li>美容師歴10年</li>
+          <li>カラーリスト検定1級取得</li>
+          <li>グレイカバーカラー専門研修修了</li>
+          <li>ヘアケアコンサルタント資格所有</li>
+        </ul>
+        <p class="stylist-message">
+          「カラーの力で、毎日が少し楽しくなる。そんな体験をすべてのお客様に届けたいです。」
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACCESS ===== -->
+<section id="access" class="section">
+  <div class="w-inn">
+    <div class="sec-head fade-up">
+      <span class="sec-label">Access</span>
+      <h2 class="sec-title">アクセス</h2>
+    </div>
+    <div class="access-grid">
+      <div class="access-map fade-up">
+        <img src="https://placehold.co/800x600/e8e4de/888888?text=Google+Map" alt="地図">
+      </div>
+      <div class="access-info fade-up fade-up-d1">
+        <table>
+          <tr>
+            <th>Salon</th>
+            <td>Hair Salon BLOOM</td>
+          </tr>
+          <tr>
+            <th>Address</th>
+            <td>〒150-0001<br>東京都渋谷区神南1-○-○<br>BLOOMビル 3F</td>
+          </tr>
+          <tr>
+            <th>Station</th>
+            <td>渋谷駅 ハチ公口より徒歩3分</td>
+          </tr>
+          <tr>
+            <th>Tel</th>
+            <td>
+              <a href="tel:0312345678" class="access-tel">03-1234-5678</a>
+            </td>
+          </tr>
+          <tr>
+            <th>Hours</th>
+            <td>
+              平日 10:00 〜 20:00<br>
+              土日祝 9:00 〜 19:00<br>
+              <span style="font-size:1.1rem;color:#aaa">最終受付は閉店1時間前</span>
+            </td>
+          </tr>
+          <tr>
+            <th>Closed</th>
+            <td>毎週火曜日・第3月曜日</td>
+          </tr>
+          <tr>
+            <th>Parking</th>
+            <td>近隣コインパーキングあり</td>
+          </tr>
+          <tr>
+            <th>Payment</th>
+            <td>各種キャッシュレス決済対応</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESERVATION ===== -->
+<section id="reservation" class="section">
+  <div class="w-inn">
+    <div class="sec-head fade-up">
+      <span class="sec-label">Reservation</span>
+      <h2 class="sec-title">ご予約</h2>
+      <p class="sec-sub">オンライン・お電話・LINEにてお気軽にどうぞ</p>
+    </div>
+    <div class="reservation-inner fade-up">
+      <!-- バッジ -->
+      <div class="reservation-badge">
+        <span class="reservation-badge-dot"></span>
+        24時間いつでもオンライン予約できます
+      </div>
+
+      <!-- Calendlyウィジェット -->
+      <div class="calendly-wrap">
+        <div class="calendly-inline-widget"
+             data-url="https://calendly.com/example/30min"
+             style="min-width:320px;height:700px;">
+        </div>
+      </div>
+
+      <!-- 区切り -->
+      <div class="reservation-divider">Or</div>
+
+      <!-- 代替CTA -->
+      <div class="alt-btns">
+        <a href="tel:0312345678" class="btn-dark">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+          Call — 03-1234-5678
+        </a>
+        <a href="https://line.me/ti/p/@bloom-salon" class="btn-line">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.365 9.863c.349 0 .63.285.63.63 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.494.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.070 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+          </svg>
+          Line Reserve
+        </a>
+      </div>
+      <p style="text-align:center;margin-top:20px;font-size:1.1rem;color:#aaa;letter-spacing:0.05em">
+        ※ ウィジェットが表示されない場合は上記よりご予約ください
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section id="cta">
+  <div class="w-inn">
+    <p class="cta-label">Hair Salon BLOOM</p>
+    <h2 class="cta-copy">
+      あなたの理想の髪へ、<br>一歩踏み出しませんか？
+    </h2>
+    <p class="cta-sub">初回カウンセリング無料。お気軽にご連絡ください。</p>
+    <div class="cta-btns">
+      <a href="#reservation" class="btn-dark">Reserve Online</a>
+      <a href="tel:0312345678" class="btn-outline">03-1234-5678</a>
+    </div>
+    <p class="cta-note">受付：平日 10:00〜20:00 / 土日祝 9:00〜19:00</p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <small>Hair Salon</small>
+          BLOOM
+        </div>
+        <p class="footer-info">
+          〒150-0001 東京都渋谷区神南1-○-○ BLOOMビル 3F<br>
+          <a href="tel:0312345678" style="color:#b9a978">03-1234-5678</a>
+          定休日：毎週火曜日・第3月曜日
+        </p>
+      </div>
+      <nav class="footer-nav">
+        <a href="#concept">Concept</a>
+        <a href="#reasons">Reason</a>
+        <a href="#menu">Menu</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#stylist">Stylist</a>
+        <a href="#access">Access</a>
+        <a href="#reservation">Reserve</a>
+      </nav>
+    </div>
+    <p class="footer-bottom">&copy; 2026 Hair Salon BLOOM. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ページトップ -->
+<a href="#top" class="page-top" aria-label="ページトップへ">
+  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 15l7-7 7 7"/>
+  </svg>
+</a>
+
+<!-- Calendly script -->
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<script>
+  // ハンバーガーメニュー
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('is-open');
+    mobileMenu.classList.toggle('is-open');
+  });
+  function closeMobileMenu() {
+    hamburger.classList.remove('is-open');
+    mobileMenu.classList.remove('is-open');
+  }
+
+  // スクロールアニメーション
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  // ヒーローのフェードアップを即時発火
+  document.querySelectorAll('#hero .fade-up').forEach((el, i) => {
+    setTimeout(() => el.classList.add('is-visible'), 200 + i * 150);
+  });
+</script>
+</body>
+</html>
