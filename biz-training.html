@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ビジネスコミュニケーション研修 | AI活用・実践型・短期成果</title>
+  <meta name="description" content="AIを活用した実践型ビジネスコミュニケーション研修。3ヶ月で組織の対話力・提案力・マネジメント力を変える法人向けプログラム。資料請求無料。">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans JP"', 'sans-serif'],
+          },
+          colors: {
+            navy:   { DEFAULT:'#1e3a5f', dark:'#152d4a', mid:'#254a7a', light:'#2d5d96', pale:'#eef3f9' },
+            orange: { DEFAULT:'#f97316', dark:'#ea6c0a', light:'#fdba74', pale:'#fff7ed' },
+          },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    body { background: #fff; color: #1a1a1a; }
+
+    /* スクロールアニメ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .rd1 { transition-delay: 0.08s; }
+    .rd2 { transition-delay: 0.16s; }
+    .rd3 { transition-delay: 0.24s; }
+    .rd4 { transition-delay: 0.32s; }
+
+    /* ヘッダー */
+    #header { transition: box-shadow 0.3s; }
+    #header.scrolled { box-shadow: 0 2px 20px rgba(30,58,95,0.12); }
+
+    /* セクション共通ヘッド */
+    .sec-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #f97316;
+      margin-bottom: 12px;
+    }
+    .sec-tag::before {
+      content: '';
+      width: 20px;
+      height: 2px;
+      background: #f97316;
+      display: inline-block;
+    }
+
+    /* カード */
+    .card {
+      background: #fff;
+      border: 1px solid #e5edf5;
+      border-radius: 12px;
+      transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+    }
+    .card:hover {
+      box-shadow: 0 12px 40px rgba(30,58,95,0.1);
+      transform: translateY(-3px);
+      border-color: rgba(30,58,95,0.2);
+    }
+
+    /* オレンジボタン */
+    .btn-orange {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: #f97316;
+      color: #fff;
+      font-weight: 700;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 14px rgba(249,115,22,0.35);
+    }
+    .btn-orange:hover {
+      background: #ea6c0a;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(249,115,22,0.45);
+    }
+
+    /* ネイビーボタン */
+    .btn-navy {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      background: #1e3a5f;
+      color: #fff;
+      font-weight: 700;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-navy:hover { background: #152d4a; transform: translateY(-1px); }
+
+    /* テーブル */
+    .price-table th {
+      background: #1e3a5f;
+      color: #fff;
+      font-weight: 600;
+      padding: 14px 20px;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-align: left;
+    }
+    .price-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid #eef3f9;
+      font-size: 0.85rem;
+      vertical-align: middle;
+    }
+    .price-table tr:last-child td { border-bottom: none; }
+    .price-table tr:nth-child(even) td { background: #f8fafd; }
+    .price-mark { color: #f97316; font-weight: 700; }
+
+    /* FAQアコーディオン */
+    details summary { list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+    .faq-icon { transition: transform 0.3s; }
+    details[open] .faq-icon { transform: rotate(45deg); }
+
+    /* ステップライン */
+    .step-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 52px;
+      width: 2px;
+      height: calc(100% - 4px);
+      background: linear-gradient(to bottom, #1e3a5f, #e5edf5);
+    }
+
+    /* ヒーロー背景 */
+    .hero-bg {
+      background: #1e3a5f;
+    }
+    .hero-pattern {
+      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0);
+      background-size: 32px 32px;
+    }
+
+    /* ナビリンク */
+    .nav-link {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.7);
+      transition: color 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .nav-link:hover { color: #fff; }
+
+    /* バッジ */
+    .badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 2px 10px;
+      border-radius: 99px;
+    }
+
+    /* 統計カード */
+    .stat-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(4px);
+    }
+
+    /* 課題カード */
+    .issue-card {
+      border-left: 4px solid #f97316;
+      background: #fff;
+      box-shadow: 0 2px 16px rgba(30,58,95,0.06);
+    }
+
+    /* テスティモニアル */
+    .testimonial { border-top: 3px solid #f97316; }
+
+    /* インプットフォーカス */
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #1e3a5f !important;
+      box-shadow: 0 0 0 3px rgba(30,58,95,0.1);
+    }
+  </style>
+</head>
+<body class="font-sans antialiased">
+
+<!-- ===== HEADER ===== -->
+<header id="header" class="fixed top-0 left-0 right-0 z-50 bg-[#1e3a5f]">
+  <div class="max-w-6xl mx-auto px-5 py-3.5 flex items-center justify-between">
+    <!-- ロゴ -->
+    <a href="#top" class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded bg-orange-DEFAULT flex items-center justify-center flex-shrink-0">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0"/>
+        </svg>
+      </div>
+      <div class="leading-none">
+        <p class="text-white font-bold text-sm tracking-wide">ビジネスコミュニケーション研修</p>
+        <p class="text-white/70 text-[9px] tracking-widest uppercase">Business Communication Training</p>
+      </div>
+    </a>
+    <!-- PC ナビ -->
+    <nav class="hidden lg:flex items-center gap-6">
+      <a href="#issues" class="nav-link">課題</a>
+      <a href="#features" class="nav-link">特徴</a>
+      <a href="#programs" class="nav-link">プログラム</a>
+      <a href="#voices" class="nav-link">導入実績</a>
+      <a href="#flow" class="nav-link">導入の流れ</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+      <a href="#contact"
+         class="ml-2 btn-orange text-xs px-4 py-2.5">
+        資料請求・お問い合わせ
+      </a>
+    </nav>
+    <!-- モバイルCTA -->
+    <a href="#contact" class="lg:hidden btn-orange text-xs px-3.5 py-2">資料請求</a>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="top" class="hero-bg hero-pattern relative min-h-screen flex items-center overflow-hidden pt-16">
+  <!-- 装飾 -->
+  <div class="absolute top-[-80px] right-[-80px] w-[500px] h-[500px] rounded-full bg-navy-mid/30 blur-[100px] pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none z-10"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-5 py-24 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+      <!-- 左：コピー -->
+      <div>
+        <div class="inline-flex items-center gap-2 bg-orange-DEFAULT/15 border border-orange-DEFAULT/30 rounded-full px-4 py-1.5 mb-7 reveal">
+          <span class="w-1.5 h-1.5 rounded-full bg-orange-DEFAULT animate-pulse"></span>
+          <span class="text-orange-light text-xs font-bold tracking-widest uppercase">AI活用・実践型・法人向け研修</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-black leading-[1.25] tracking-tight text-white mb-6 reveal rd1">
+          社員の成長が、<br>
+          <span class="text-orange-DEFAULT">会社の成長</span>になる。
+        </h1>
+        <p class="text-base leading-relaxed mb-8 max-w-lg reveal rd2" style="color:rgba(255,255,255,0.8)">
+          伝わらない指示、空回りする会議、届かないプレゼン——<br>
+          その悩みはコミュニケーションの型で解決できます。<br class="hidden sm:block">
+          AIを活用した実践型プログラムで、<strong class="text-white">3ヶ月以内に組織の対話力を変革</strong>します。
+        </p>
+        <div class="flex flex-wrap gap-4 reveal rd3">
+          <a href="#contact" class="btn-orange">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            無料で資料請求する
+          </a>
+          <a href="#features"
+             class="inline-flex items-center gap-2 px-6 py-3.5 border border-white/20 text-white/70 hover:border-white/40 hover:text-white rounded-md text-sm font-medium transition">
+            プログラムを見る
+          </a>
+        </div>
+        <!-- 信頼バッジ -->
+        <div class="flex flex-wrap gap-3 mt-8 reveal rd4">
+          <span class="badge bg-white/10 text-white border border-white/30">✓ 導入企業 80社以上</span>
+          <span class="badge bg-white/10 text-white border border-white/30">✓ 受講者満足度 97%</span>
+          <span class="badge bg-white/10 text-white border border-white/30">✓ 上場企業実績あり</span>
+        </div>
+      </div>
+
+      <!-- 右：統計・実績カード -->
+      <div class="hidden lg:grid grid-cols-2 gap-4 reveal rd2">
+        <div class="stat-card rounded-xl p-5 col-span-2">
+          <p class="text-white/80 text-xs mb-1 tracking-wide">研修実施後の変化（受講者アンケート）</p>
+          <div class="grid grid-cols-3 gap-4 mt-3">
+            <div class="text-center">
+              <p class="text-3xl font-black text-orange-DEFAULT">87<span class="text-xl">%</span></p>
+              <p class="text-white/80 text-xs mt-1">会議での発言量が増加</p>
+            </div>
+            <div class="text-center border-x border-white/10">
+              <p class="text-3xl font-black text-orange-DEFAULT">92<span class="text-xl">%</span></p>
+              <p class="text-white/80 text-xs mt-1">部下への指示が的確に</p>
+            </div>
+            <div class="text-center">
+              <p class="text-3xl font-black text-orange-DEFAULT">79<span class="text-xl">%</span></p>
+              <p class="text-white/80 text-xs mt-1">プレゼン通過率が向上</p>
+            </div>
+          </div>
+        </div>
+        <div class="stat-card rounded-xl p-5">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="w-6 h-6 rounded bg-orange-DEFAULT/20 flex items-center justify-center">
+              <svg class="w-3.5 h-3.5 text-orange-DEFAULT" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <p class="text-white/80 text-xs">AI活用</p>
+          </div>
+          <p class="text-white font-bold text-sm leading-snug">個人の弱点を<br>AIが分析・最適化</p>
+        </div>
+        <div class="stat-card rounded-xl p-5">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="w-6 h-6 rounded bg-orange-DEFAULT/20 flex items-center justify-center">
+              <svg class="w-3.5 h-3.5 text-orange-DEFAULT" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <p class="text-white/80 text-xs">短期成果</p>
+          </div>
+          <p class="text-white font-bold text-sm leading-snug">最短<span class="text-orange-DEFAULT">3ヶ月</span>で<br>組織に変化が出る</p>
+        </div>
+        <div class="stat-card rounded-xl p-5 col-span-2">
+          <p class="text-white/45 text-xs mb-2">対応業種・規模</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs bg-white/10 text-white/60 px-2.5 py-1 rounded-full">製造業</span>
+            <span class="text-xs bg-white/10 text-white/60 px-2.5 py-1 rounded-full">IT・通信</span>
+            <span class="text-xs bg-white/10 text-white/60 px-2.5 py-1 rounded-full">金融・保険</span>
+            <span class="text-xs bg-white/10 text-white/60 px-2.5 py-1 rounded-full">小売・流通</span>
+            <span class="text-xs bg-white/10 text-white/60 px-2.5 py-1 rounded-full">医療・福祉</span>
+            <span class="text-xs bg-white/10 text-white/60 px-2.5 py-1 rounded-full">50名〜5000名規模</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== ISSUES ===== -->
+<section id="issues" class="py-24 bg-navy-pale">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-14 reveal">
+      <p class="sec-tag justify-center">Issues</p>
+      <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-navy-DEFAULT mb-4">
+        こんな課題、ありませんか？
+      </h2>
+      <p class="text-gray-500 text-sm max-w-md mx-auto leading-relaxed">
+        多くの企業の人事担当者から、同じお悩みをいただいています。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- 課題1 -->
+      <div class="issue-card rounded-xl p-7 reveal rd1">
+        <div class="w-12 h-12 rounded-lg bg-navy-pale border border-navy-DEFAULT/15 flex items-center justify-center mb-5">
+          <svg class="w-6 h-6 text-navy-DEFAULT" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-base mb-3 text-navy-DEFAULT leading-snug">
+          会議でなかなか<br>意見が出てこない
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          発言力の低下が組織の停滞につながります。「うちの会議は発言者が偏っている」「若手が萎縮して意見を言えない」という声を多く聞きます。
+        </p>
+        <div class="mt-5 pt-5 border-t border-gray-100">
+          <p class="text-xs text-orange-DEFAULT font-semibold">→ 「ファシリテーション＆発言力強化」モジュールで解決</p>
+        </div>
+      </div>
+
+      <!-- 課題2 -->
+      <div class="issue-card rounded-xl p-7 reveal rd2">
+        <div class="w-12 h-12 rounded-lg bg-navy-pale border border-navy-DEFAULT/15 flex items-center justify-center mb-5">
+          <svg class="w-6 h-6 text-navy-DEFAULT" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-base mb-3 text-navy-DEFAULT leading-snug">
+          管理職の指示が<br>部下に伝わっていない
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          「言ったはずなのになぜできていないのか」という管理職の不満と、「何を求められているかわからない」という部下の困惑が繰り返されています。
+        </p>
+        <div class="mt-5 pt-5 border-t border-gray-100">
+          <p class="text-xs text-orange-DEFAULT font-semibold">→ 「ロジカル指示・フィードバック」モジュールで解決</p>
+        </div>
+      </div>
+
+      <!-- 課題3 -->
+      <div class="issue-card rounded-xl p-7 reveal rd3">
+        <div class="w-12 h-12 rounded-lg bg-navy-pale border border-navy-DEFAULT/15 flex items-center justify-center mb-5">
+          <svg class="w-6 h-6 text-navy-DEFAULT" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+              d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-base mb-3 text-navy-DEFAULT leading-snug">
+          プレゼンが通らず<br>商談・社内提案が停滞
+        </h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          資料は作れるのに「熱量が伝わらない」「論理の組み立てが弱い」と感じる場面が増えています。プレゼン力の差が成果の差に直結しています。
+        </p>
+        <div class="mt-5 pt-5 border-t border-gray-100">
+          <p class="text-xs text-orange-DEFAULT font-semibold">→ 「プレゼンテーション＆説得力」モジュールで解決</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 下部メッセージ -->
+    <div class="mt-10 text-center reveal">
+      <p class="text-gray-400 text-sm">これらの課題は、<strong class="text-navy-DEFAULT">正しいコミュニケーションの型</strong>を学ぶことで解決できます。</p>
+      <a href="#features" class="inline-flex items-center gap-1.5 mt-3 text-orange-DEFAULT font-semibold text-sm hover:underline">
+        解決方法を見る
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section id="features" class="py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-14 reveal">
+      <p class="sec-tag justify-center">Features</p>
+      <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-navy-DEFAULT mb-4">
+        研修プログラムの3つの特徴
+      </h2>
+      <p class="text-gray-500 text-sm max-w-lg mx-auto leading-relaxed">
+        知識の詰め込みではなく、「現場で即使える」スキルの習得にこだわっています。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-7">
+
+      <!-- 特徴1：AI活用 -->
+      <div class="card p-0 overflow-hidden reveal rd1">
+        <div class="relative h-48 overflow-hidden">
+          <img src="https://placehold.co/600x320/1e3a5f/ffffff?text=AI+Analysis"
+               alt="AI活用" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-DEFAULT/80 to-transparent"></div>
+          <div class="absolute bottom-4 left-5">
+            <span class="badge bg-orange-DEFAULT text-white">Feature 01</span>
+          </div>
+        </div>
+        <div class="p-7">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-orange-pale flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-orange-DEFAULT" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h3 class="font-bold text-base text-navy-DEFAULT">AIが個人の弱点を分析・最適化</h3>
+          </div>
+          <p class="text-gray-500 text-sm leading-relaxed">
+            研修前のアセスメントをAIが解析し、受講者ごとに最適化されたカリキュラムを自動生成。「全員同じ研修」ではなく、一人ひとりの課題に合わせた内容を提供します。研修後の行動変化もAIがトラッキングします。
+          </p>
+          <ul class="mt-5 space-y-2">
+            <li class="flex items-start gap-2 text-xs text-gray-500">
+              <span class="text-orange-DEFAULT mt-0.5 flex-shrink-0">●</span>受講前・後のスキルアセスメント
+            </li>
+            <li class="flex items-start gap-2 text-xs text-gray-500">
+              <span class="text-orange-DEFAULT mt-0.5 flex-shrink-0">●</span>個人別弱点レポート自動生成
+            </li>
+            <li class="flex items-start gap-2 text-xs text-gray-500">
+              <span class="text-orange-DEFAULT mt-0.5 flex-shrink-0">●</span>行動変化トラッキングダッシュボード
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 特徴2：実践型 -->
+      <div class="card p-0 overflow-hidden reveal rd2">
+        <div class="relative h-48 overflow-hidden">
+          <img src="https://placehold.co/600x320/254a7a/ffffff?text=Role+Play"
+               alt="実践型ロールプレイ" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-DEFAULT/80 to-transparent"></div>
+          <div class="absolute bottom-4 left-5">
+            <span class="badge bg-orange-DEFAULT text-white">Feature 02</span>
+          </div>
+        </div>
+        <div class="p-7">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-orange-pale flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-orange-DEFAULT" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+              </svg>
+            </div>
+            <h3 class="font-bold text-base text-navy-DEFAULT">現場で即使える実践型ワーク</h3>
+          </div>
+          <p class="text-gray-500 text-sm leading-relaxed">
+            座学ゼロのロールプレイ中心設計。実際のビジネスシーンを再現したシナリオで練習し、その場でフィードバック。講義を聞いて終わりではなく、「使える」スキルとして身に付けます。
+          </p>
+          <ul class="mt-5 space-y-2">
+            <li class="flex items-start gap-2 text-xs text-gray-500">
+              <span class="text-orange-DEFAULT mt-0.5 flex-shrink-0">●</span>業種・職種別リアルシナリオ
+            </li>
+            <li class="flex items-start gap-2 text-xs text-gray-500">
+              <span class="text-orange-DEFAULT mt-0.5 flex-shrink-0">●</span>即時フィードバック方式
+            </li>
+            <li class="flex items-start gap-2 text-xs text-gray-500">
+              <span class="text-orange-DEFAULT mt-0.5 flex-shrink-0">●</span>職場での宿題課題つき
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 特徴3：短期成果 -->
+      <div class="card p-0 overflow-hidden reveal rd3">
+        <div class="relative h-48 overflow-hidden">
+          <img src="https://placehold.co/600x320/152d4a/ffffff?text=3+Month+Result"
+               alt="3ヶ月で成果" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-DEFAULT/80 to-transparent"></div>
+          <div class="absolute bottom-4 left-5">
+            <span class="badge bg-orange-DEFAULT text-white">Feature 03</span>
+          </div>
+        </div>
+        <div class="p-7">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-orange-pale flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-orange-DEFAULT" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+            </div>
+            <h3 class="font-bold text-base text-navy-DEFAULT">3ヶ月以内に組織に変化が出る</h3>
+          </div>
+          <p class="text-gray-500 text-sm leading-relaxed">
+            研修は終わりではなく始まり。月1回の全体研修＋週次のオンラインフォローアップで、学びを職場に定着させます。効果測定レポートを四半期ごとに人事担当者へ提出します。
+          </p>
+          <ul class="mt-5 space-y-2">
+            <li class="flex items-start gap-2 text-xs text-gray-500">
+              <span class="text-orange-DEFAULT mt-0.5 flex-shrink-0">●</span>週次オンラインフォロー
+            </li>
+            <li class="flex items-start gap-2 text-xs text-gray-500">
+              <span class="text-orange-DEFAULT mt-0.5 flex-shrink-0">●</span>四半期効果測定レポート
+            </li>
+            <li class="flex items-start gap-2 text-xs text-gray-500">
+              <span class="text-orange-DEFAULT mt-0.5 flex-shrink-0">●</span>人事担当者向けダッシュボード
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROGRAMS ===== -->
+<section id="programs" class="py-24 bg-navy-pale">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-14 reveal">
+      <p class="sec-tag justify-center">Programs &amp; Pricing</p>
+      <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-navy-DEFAULT mb-4">
+        プログラム内容・料金表
+      </h2>
+      <p class="text-gray-500 text-sm max-w-lg mx-auto leading-relaxed">
+        すべて税別・カスタマイズ対応可。まずはお気軽にご相談ください。
+      </p>
+    </div>
+
+    <!-- プログラム比較テーブル -->
+    <div class="overflow-x-auto rounded-xl shadow-md reveal">
+      <table class="price-table w-full min-w-[700px] border-collapse bg-white">
+        <thead>
+          <tr>
+            <th class="w-[220px] rounded-tl-xl">プログラム名</th>
+            <th>対象層</th>
+            <th>期間・回数</th>
+            <th>主な内容</th>
+            <th class="text-right rounded-tr-xl">料金（税別）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="font-bold text-navy-DEFAULT text-sm">ベーシックコース</div>
+              <div class="text-xs text-gray-400 mt-0.5">発言力・傾聴力の基礎</div>
+            </td>
+            <td class="text-gray-600">全社員・新入社員</td>
+            <td class="text-gray-600">1日（6時間）× 1回</td>
+            <td>
+              <div class="flex flex-wrap gap-1">
+                <span class="text-xs bg-navy-pale text-navy-DEFAULT px-2 py-0.5 rounded-full">発言力</span>
+                <span class="text-xs bg-navy-pale text-navy-DEFAULT px-2 py-0.5 rounded-full">傾聴</span>
+                <span class="text-xs bg-navy-pale text-navy-DEFAULT px-2 py-0.5 rounded-full">報連相</span>
+              </div>
+            </td>
+            <td class="text-right">
+              <span class="price-mark text-base font-black">¥480,000</span>
+              <div class="text-xs text-gray-400">（〜30名）</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="font-bold text-navy-DEFAULT text-sm flex items-center gap-2">
+                スタンダードコース
+                <span class="badge bg-orange-DEFAULT text-white text-[9px]">人気</span>
+              </div>
+              <div class="text-xs text-gray-400 mt-0.5">3ヶ月・実践型集中プログラム</div>
+            </td>
+            <td class="text-gray-600">中堅・管理職候補</td>
+            <td class="text-gray-600">月1回全体研修<br>＋週次フォロー（3ヶ月）</td>
+            <td>
+              <div class="flex flex-wrap gap-1">
+                <span class="text-xs bg-navy-pale text-navy-DEFAULT px-2 py-0.5 rounded-full">ファシリテーション</span>
+                <span class="text-xs bg-navy-pale text-navy-DEFAULT px-2 py-0.5 rounded-full">提案力</span>
+                <span class="text-xs bg-navy-pale text-navy-DEFAULT px-2 py-0.5 rounded-full">AI分析</span>
+              </div>
+            </td>
+            <td class="text-right">
+              <span class="price-mark text-base font-black">¥980,000</span>
+              <div class="text-xs text-gray-400">（〜20名）</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="font-bold text-navy-DEFAULT text-sm">マネジメントコース</div>
+              <div class="text-xs text-gray-400 mt-0.5">管理職向け指示・育成力</div>
+            </td>
+            <td class="text-gray-600">現役管理職・リーダー</td>
+            <td class="text-gray-600">月2回（3ヶ月）</td>
+            <td>
+              <div class="flex flex-wrap gap-1">
+                <span class="text-xs bg-navy-pale text-navy-DEFAULT px-2 py-0.5 rounded-full">1on1</span>
+                <span class="text-xs bg-navy-pale text-navy-DEFAULT px-2 py-0.5 rounded-full">フィードバック</span>
+                <span class="text-xs bg-navy-pale text-navy-DEFAULT px-2 py-0.5 rounded-full">心理的安全性</span>
+              </div>
+            </td>
+            <td class="text-right">
+              <span class="price-mark text-base font-black">¥1,280,000</span>
+              <div class="text-xs text-gray-400">（〜15名）</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="font-bold text-navy-DEFAULT text-sm">エグゼクティブコース</div>
+              <div class="text-xs text-gray-400 mt-0.5">役員・経営幹部向け</div>
+            </td>
+            <td class="text-gray-600">役員・部長層</td>
+            <td class="text-gray-600">完全カスタム設計</td>
+            <td>
+              <div class="flex flex-wrap gap-1">
+                <span class="text-xs bg-navy-pale text-navy-DEFAULT px-2 py-0.5 rounded-full">戦略的対話</span>
+                <span class="text-xs bg-navy-pale text-navy-DEFAULT px-2 py-0.5 rounded-full">スピーチ</span>
+                <span class="text-xs bg-navy-pale text-navy-DEFAULT px-2 py-0.5 rounded-full">組織変革</span>
+              </div>
+            </td>
+            <td class="text-right">
+              <span class="price-mark text-base font-black">要相談</span>
+              <div class="text-xs text-gray-400">個別お見積もり</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 reveal">
+      <p class="text-xs text-gray-400 leading-relaxed">
+        ※ 表示価格は目安です。人数・期間・カスタマイズ内容により変動します。<br>
+        ※ オンライン・対面・ハイブリッド形式に対応しています。
+      </p>
+      <a href="#contact" class="btn-orange whitespace-nowrap text-sm px-5 py-3">
+        詳細資料を無料請求する
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VOICES ===== -->
+<section id="voices" class="py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-14 reveal">
+      <p class="sec-tag justify-center">Client Voices</p>
+      <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-navy-DEFAULT mb-4">
+        導入実績・お客様の声
+      </h2>
+      <p class="text-gray-500 text-sm max-w-md mx-auto leading-relaxed">
+        業種・規模を問わず、多くの企業様にご活用いただいています。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- 声1 -->
+      <div class="testimonial card p-7 flex flex-col reveal rd1">
+        <div class="flex items-center gap-1 text-orange-DEFAULT mb-4">★★★★★</div>
+        <p class="text-gray-600 text-sm leading-relaxed flex-1 mb-6">
+          「管理職研修を導入して3ヶ月後、部下からの『指示が明確になった』というアンケート評価が前年比28pt向上しました。ロールプレイ形式なので、翌日から職場で実践できる内容が評価されています。次年度は全管理職への展開を予定しています。」
+        </p>
+        <div class="flex items-center gap-4 pt-5 border-t border-gray-100">
+          <img src="https://placehold.co/52x52/eef3f9/1e3a5f?text=S"
+               alt="S.T様" class="w-13 h-13 rounded-full object-cover flex-shrink-0">
+          <div>
+            <p class="font-bold text-sm text-navy-DEFAULT">S.T 様</p>
+            <p class="text-xs text-gray-400">製造業・従業員800名</p>
+            <p class="text-xs text-orange-DEFAULT mt-0.5 font-semibold">人事部長</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 声2 -->
+      <div class="testimonial card p-7 flex flex-col reveal rd2">
+        <div class="flex items-center gap-1 text-orange-DEFAULT mb-4">★★★★★</div>
+        <p class="text-gray-600 text-sm leading-relaxed flex-1 mb-6">
+          「以前は社内プレゼンで承認が通りにくいという課題がありました。スタンダードコース受講後、営業部門の社内稟議通過率が約40%改善。AIによる個人分析レポートが具体的で、本人の気づきを促す効果が高かったです。費用対効果は非常に高いと感じています。」
+        </p>
+        <div class="flex items-center gap-4 pt-5 border-t border-gray-100">
+          <img src="https://placehold.co/52x52/eef3f9/1e3a5f?text=M"
+               alt="M.K様" class="w-13 h-13 rounded-full object-cover flex-shrink-0">
+          <div>
+            <p class="font-bold text-sm text-navy-DEFAULT">M.K 様</p>
+            <p class="text-xs text-gray-400">IT・通信業・従業員250名</p>
+            <p class="text-xs text-orange-DEFAULT mt-0.5 font-semibold">人材開発部 課長</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 声3 -->
+      <div class="testimonial card p-7 flex flex-col reveal rd3">
+        <div class="flex items-center gap-1 text-orange-DEFAULT mb-4">★★★★★</div>
+        <p class="text-gray-600 text-sm leading-relaxed flex-1 mb-6">
+          「新入社員の早期離職が課題でしたが、ベーシックコースを入社3ヶ月時点で実施したところ、上司・同僚とのコミュニケーション満足度が大幅に向上。1年後の定着率も前年比12pt改善しました。オンライン形式で全国の拠点社員を一斉に受講できた点も助かりました。」
+        </p>
+        <div class="flex items-center gap-4 pt-5 border-t border-gray-100">
+          <img src="https://placehold.co/52x52/eef3f9/1e3a5f?text=Y"
+               alt="Y.N様" class="w-13 h-13 rounded-full object-cover flex-shrink-0">
+          <div>
+            <p class="font-bold text-sm text-navy-DEFAULT">Y.N 様</p>
+            <p class="text-xs text-gray-400">小売・流通業・従業員1,200名</p>
+            <p class="text-xs text-orange-DEFAULT mt-0.5 font-semibold">人事採用部 マネジャー</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ロゴ帯 -->
+    <div class="mt-14 reveal">
+      <p class="text-center text-xs text-gray-400 mb-6 tracking-widest uppercase">導入企業様（一部）</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <div class="bg-gray-50 border border-gray-100 rounded-lg px-6 py-3 text-xs text-gray-300 font-medium tracking-wide">製造業 A社</div>
+        <div class="bg-gray-50 border border-gray-100 rounded-lg px-6 py-3 text-xs text-gray-300 font-medium tracking-wide">IT企業 B社</div>
+        <div class="bg-gray-50 border border-gray-100 rounded-lg px-6 py-3 text-xs text-gray-300 font-medium tracking-wide">金融 C社</div>
+        <div class="bg-gray-50 border border-gray-100 rounded-lg px-6 py-3 text-xs text-gray-300 font-medium tracking-wide">小売 D社</div>
+        <div class="bg-gray-50 border border-gray-100 rounded-lg px-6 py-3 text-xs text-gray-300 font-medium tracking-wide">医療法人 E社</div>
+        <div class="bg-gray-50 border border-gray-100 rounded-lg px-6 py-3 text-xs text-gray-300 font-medium tracking-wide">不動産 F社</div>
+        <div class="bg-gray-50 border border-gray-100 rounded-lg px-6 py-3 text-xs text-gray-300 font-medium tracking-wide">物流 G社</div>
+        <div class="bg-gray-50 border border-gray-100 rounded-lg px-6 py-3 text-xs text-gray-300 font-medium tracking-wide">その他 73社</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FLOW ===== -->
+<section id="flow" class="py-24 bg-navy-DEFAULT">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-14 reveal">
+      <p class="sec-tag justify-center text-orange-DEFAULT">Implementation Flow</p>
+      <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-white mb-4">
+        導入の流れ
+      </h2>
+      <p class="text-white/45 text-sm max-w-md mx-auto leading-relaxed">
+        資料請求から研修開始まで、最短2週間。担当者がワンストップでサポートします。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <!-- Step 1 -->
+      <div class="relative reveal rd1">
+        <!-- PC用矢印 -->
+        <div class="hidden lg:block absolute top-8 -right-3 z-10">
+          <svg class="w-6 h-6 text-orange-DEFAULT/40" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5l8 7-8 7V5z"/>
+          </svg>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-xl p-7 h-full hover:bg-white/8 transition">
+          <div class="w-12 h-12 rounded-full bg-orange-DEFAULT flex items-center justify-center mb-5">
+            <span class="text-white font-black text-lg leading-none">01</span>
+          </div>
+          <h3 class="font-bold text-base text-white mb-3">資料請求・<br>お問い合わせ</h3>
+          <p class="text-white/45 text-sm leading-relaxed">
+            このページ下部のフォームからご請求ください。課題・対象人数・実施希望時期をお聞かせいただくと、よりスムーズにご提案できます。
+          </p>
+          <div class="mt-5 pt-5 border-t border-white/10">
+            <p class="text-xs text-orange-DEFAULT font-semibold">所要時間：5分</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="relative reveal rd2">
+        <div class="hidden lg:block absolute top-8 -right-3 z-10">
+          <svg class="w-6 h-6 text-orange-DEFAULT/40" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5l8 7-8 7V5z"/>
+          </svg>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-xl p-7 h-full hover:bg-white/8 transition">
+          <div class="w-12 h-12 rounded-full bg-orange-DEFAULT flex items-center justify-center mb-5">
+            <span class="text-white font-black text-lg leading-none">02</span>
+          </div>
+          <h3 class="font-bold text-base text-white mb-3">無料<br>ヒアリング面談</h3>
+          <p class="text-white/45 text-sm leading-relaxed">
+            担当コンサルタントが貴社の課題・組織状況・予算感などを詳しくお聞きします。対面・オンライン、どちらも対応可能です。
+          </p>
+          <div class="mt-5 pt-5 border-t border-white/10">
+            <p class="text-xs text-orange-DEFAULT font-semibold">所要時間：60分・無料</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="relative reveal rd3">
+        <div class="hidden lg:block absolute top-8 -right-3 z-10">
+          <svg class="w-6 h-6 text-orange-DEFAULT/40" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5l8 7-8 7V5z"/>
+          </svg>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-xl p-7 h-full hover:bg-white/8 transition">
+          <div class="w-12 h-12 rounded-full bg-orange-DEFAULT flex items-center justify-center mb-5">
+            <span class="text-white font-black text-lg leading-none">03</span>
+          </div>
+          <h3 class="font-bold text-base text-white mb-3">プログラム<br>カスタマイズ・提案</h3>
+          <p class="text-white/45 text-sm leading-relaxed">
+            ヒアリング内容をもとに貴社専用の研修プランを設計。スケジュール・料金・KPIを明示した提案書をご提出します。
+          </p>
+          <div class="mt-5 pt-5 border-t border-white/10">
+            <p class="text-xs text-orange-DEFAULT font-semibold">ヒアリングから3営業日以内</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="reveal rd4">
+        <div class="bg-orange-DEFAULT/10 border border-orange-DEFAULT/30 rounded-xl p-7 h-full">
+          <div class="w-12 h-12 rounded-full bg-orange-DEFAULT flex items-center justify-center mb-5">
+            <span class="text-white font-black text-lg leading-none">04</span>
+          </div>
+          <h3 class="font-bold text-base text-white mb-3">研修実施・<br>効果測定</h3>
+          <p class="text-white/45 text-sm leading-relaxed">
+            ご契約後、最短2週間で研修スタート。実施中は担当者がPDCAをサポート。四半期ごとに効果測定レポートを提出します。
+          </p>
+          <div class="mt-5 pt-5 border-t border-orange-DEFAULT/20">
+            <p class="text-xs text-orange-light font-semibold">✓ 最短2週間でスタート</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" class="py-24 bg-white">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center mb-14 reveal">
+      <p class="sec-tag justify-center">FAQ</p>
+      <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-navy-DEFAULT mb-4">
+        よくある質問
+      </h2>
+    </div>
+
+    <div class="space-y-3">
+
+      <!-- Q1 -->
+      <details class="group border border-gray-200 rounded-xl overflow-hidden reveal rd1">
+        <summary class="flex items-center justify-between px-6 py-5 cursor-pointer bg-white hover:bg-navy-pale transition">
+          <div class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded bg-navy-DEFAULT text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">Q</span>
+            <span class="text-sm font-medium text-navy-DEFAULT">研修は対面とオンライン、どちらに対応していますか？</span>
+          </div>
+          <span class="faq-icon text-gray-400 text-xl flex-shrink-0 ml-4 leading-none font-light">+</span>
+        </summary>
+        <div class="px-6 pb-5 pt-4 bg-navy-pale border-t border-gray-100">
+          <div class="flex gap-3">
+            <span class="w-6 h-6 rounded bg-orange-DEFAULT text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">A</span>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              対面・オンライン・ハイブリッドのすべてに対応しています。全国の拠点社員を同時に受講いただく場合はオンラインが人気です。対面の場合は全国への出張研修も可能です。形式の組み合わせについては、ヒアリング時にご相談ください。
+            </p>
+          </div>
+        </div>
+      </details>
+
+      <!-- Q2 -->
+      <details class="group border border-gray-200 rounded-xl overflow-hidden reveal rd2">
+        <summary class="flex items-center justify-between px-6 py-5 cursor-pointer bg-white hover:bg-navy-pale transition">
+          <div class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded bg-navy-DEFAULT text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">Q</span>
+            <span class="text-sm font-medium text-navy-DEFAULT">何名から依頼できますか？また、少人数の場合の料金は？</span>
+          </div>
+          <span class="faq-icon text-gray-400 text-xl flex-shrink-0 ml-4 leading-none font-light">+</span>
+        </summary>
+        <div class="px-6 pb-5 pt-4 bg-navy-pale border-t border-gray-100">
+          <div class="flex gap-3">
+            <span class="w-6 h-6 rounded bg-orange-DEFAULT text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">A</span>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              5名様から対応可能です。料金表は30名以下を基準にしていますが、人数による単価の変動がございます。50名以上は割引対応も可能です。まずはお問い合わせいただき、人数に合わせたお見積もりをご提示します。
+            </p>
+          </div>
+        </div>
+      </details>
+
+      <!-- Q3 -->
+      <details class="group border border-gray-200 rounded-xl overflow-hidden reveal rd3">
+        <summary class="flex items-center justify-between px-6 py-5 cursor-pointer bg-white hover:bg-navy-pale transition">
+          <div class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded bg-navy-DEFAULT text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">Q</span>
+            <span class="text-sm font-medium text-navy-DEFAULT">「成果が出なかった場合」の保証はありますか？</span>
+          </div>
+          <span class="faq-icon text-gray-400 text-xl flex-shrink-0 ml-4 leading-none font-light">+</span>
+        </summary>
+        <div class="px-6 pb-5 pt-4 bg-navy-pale border-t border-gray-100">
+          <div class="flex gap-3">
+            <span class="w-6 h-6 rounded bg-orange-DEFAULT text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">A</span>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              導入時にKPI（目標値）を共同で設定し、3ヶ月後の効果測定で目標達成度を測ります。スタンダードコース以上では、目標未達の場合に1ヶ月分の追加フォローアップを無償で実施する「成果保証オプション」をご選択いただけます（別途お申込み）。詳細はヒアリング時にご説明します。
+            </p>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section id="contact" class="py-24 bg-navy-pale">
+  <div class="max-w-5xl mx-auto px-5">
+    <div class="text-center mb-12 reveal">
+      <p class="sec-tag justify-center">Contact</p>
+      <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-navy-DEFAULT mb-4">
+        資料請求・お問い合わせ
+      </h2>
+      <p class="text-gray-500 text-sm max-w-lg mx-auto leading-relaxed">
+        資料請求・ご相談は無料です。まずはお気軽にフォームからご連絡ください。<br>
+        <strong class="text-navy-DEFAULT">2営業日以内</strong>に担当者よりご連絡いたします。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-7">
+
+      <!-- フォーム（3/5） -->
+      <div class="lg:col-span-3 bg-white border border-gray-200 rounded-2xl p-8 shadow-sm reveal rd1">
+        <h3 class="font-bold text-base text-navy-DEFAULT mb-1.5">お問い合わせフォーム</h3>
+        <p class="text-gray-400 text-xs mb-6">＊は必須項目です</p>
+
+        <form id="contact-form" class="space-y-4" onsubmit="handleSubmit(event)">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1.5">会社名 <span class="text-orange-DEFAULT">＊</span></label>
+              <input type="text" id="f-company" placeholder="株式会社〇〇" required
+                class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 placeholder-gray-300 transition">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1.5">部署・役職 <span class="text-orange-DEFAULT">＊</span></label>
+              <input type="text" id="f-dept" placeholder="人事部 課長" required
+                class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 placeholder-gray-300 transition">
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1.5">お名前 <span class="text-orange-DEFAULT">＊</span></label>
+              <input type="text" id="f-name" placeholder="山田 太郎" required
+                class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 placeholder-gray-300 transition">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1.5">電話番号 <span class="text-orange-DEFAULT">＊</span></label>
+              <input type="tel" id="f-tel" placeholder="03-0000-0000" required
+                class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 placeholder-gray-300 transition">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-600 mb-1.5">メールアドレス <span class="text-orange-DEFAULT">＊</span></label>
+            <input type="email" id="f-email" placeholder="yamada@example.co.jp" required
+              class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 placeholder-gray-300 transition">
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1.5">従業員数</label>
+              <select id="f-size" class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-600 transition bg-white">
+                <option value="">選択してください</option>
+                <option>〜50名</option>
+                <option>51〜200名</option>
+                <option>201〜500名</option>
+                <option>501〜1,000名</option>
+                <option>1,001名以上</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1.5">ご興味のあるプラン</label>
+              <select id="f-plan" class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-600 transition bg-white">
+                <option value="">選択してください</option>
+                <option>ベーシックコース</option>
+                <option>スタンダードコース</option>
+                <option>マネジメントコース</option>
+                <option>エグゼクティブコース</option>
+                <option>未定・相談したい</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-600 mb-1.5">お問い合わせ内容・課題（任意）</label>
+            <textarea id="f-message" rows="3"
+              placeholder="例：管理職のフィードバックスキルを向上させたい。30名程度、今秋を目標に実施したい。"
+              class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 placeholder-gray-300 transition resize-none"></textarea>
+          </div>
+
+          <!-- エラー -->
+          <div id="form-error" class="hidden text-xs text-red-500 bg-red-50 border border-red-200 rounded-lg px-4 py-2.5"></div>
+
+          <button type="submit" id="submit-btn"
+            class="btn-orange w-full justify-center py-4 text-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            資料請求・お問い合わせを送信する
+          </button>
+
+          <p class="text-center text-xs text-gray-400">
+            送信後、<strong class="text-gray-600">2営業日以内</strong>にご担当者よりご連絡します。
+          </p>
+        </form>
+
+        <!-- サンクス -->
+        <div id="thankyou" class="hidden text-center py-8">
+          <div class="w-16 h-16 rounded-full bg-navy-pale border border-navy-DEFAULT/20 flex items-center justify-center mx-auto mb-5">
+            <svg class="w-8 h-8 text-navy-DEFAULT" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-lg text-navy-DEFAULT mb-2">送信完了しました。</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">
+            お問い合わせありがとうございます。<br>
+            2営業日以内に担当者よりご連絡いたします。
+          </p>
+        </div>
+      </div>
+
+      <!-- 右：情報・電話 (2/5) -->
+      <div class="lg:col-span-2 flex flex-col gap-5 reveal rd2">
+        <!-- 電話 -->
+        <div class="bg-navy-DEFAULT rounded-2xl p-7 text-white">
+          <p class="text-white/50 text-xs mb-1 tracking-wide uppercase">Phone</p>
+          <p class="text-xs text-white/60 mb-3">お急ぎの場合はお電話ください</p>
+          <a href="tel:0312345678" class="text-2xl font-black tracking-widest hover:text-orange-DEFAULT transition block mb-1">
+            03-1234-5678
+          </a>
+          <p class="text-white/35 text-xs">平日 9:00〜18:00（土日祝除く）</p>
+        </div>
+
+        <!-- ポイント -->
+        <div class="bg-white border border-gray-200 rounded-2xl p-7">
+          <h4 class="font-bold text-sm text-navy-DEFAULT mb-4">資料請求のメリット</h4>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <div class="w-7 h-7 rounded-full bg-orange-pale flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5 text-orange-DEFAULT" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-navy-DEFAULT">詳細プログラム資料</p>
+                <p class="text-xs text-gray-400 mt-0.5">カリキュラム・実績・FAQ集を一式送付</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-7 h-7 rounded-full bg-orange-pale flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5 text-orange-DEFAULT" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-navy-DEFAULT">無料ヒアリングのご案内</p>
+                <p class="text-xs text-gray-400 mt-0.5">課題整理から始められる60分無料相談</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-7 h-7 rounded-full bg-orange-pale flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5 text-orange-DEFAULT" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-navy-DEFAULT">導入事例レポート</p>
+                <p class="text-xs text-gray-400 mt-0.5">同業種・同規模の具体的な成果事例を共有</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-7 h-7 rounded-full bg-orange-pale flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5 text-orange-DEFAULT" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-navy-DEFAULT">費用概算シミュレーター</p>
+                <p class="text-xs text-gray-400 mt-0.5">人数・期間別の料金目安を即時算出</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="bg-navy-dark text-white py-10">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-8">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded bg-orange-DEFAULT flex items-center justify-center flex-shrink-0">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+        </div>
+        <div class="leading-none">
+          <p class="font-bold text-sm tracking-wide">ビジネスコミュニケーション研修</p>
+          <p class="text-white/30 text-[9px] tracking-widest uppercase mt-0.5">Business Communication Training</p>
+        </div>
+      </div>
+      <nav class="flex flex-wrap gap-5 text-xs text-white/35">
+        <a href="#issues" class="hover:text-white/70 transition">課題</a>
+        <a href="#features" class="hover:text-white/70 transition">特徴</a>
+        <a href="#programs" class="hover:text-white/70 transition">プログラム</a>
+        <a href="#voices" class="hover:text-white/70 transition">導入実績</a>
+        <a href="#flow" class="hover:text-white/70 transition">導入の流れ</a>
+        <a href="#faq" class="hover:text-white/70 transition">FAQ</a>
+        <a href="#contact" class="hover:text-white/70 transition">資料請求</a>
+      </nav>
+    </div>
+    <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <p class="text-xs text-white/25">
+        〒100-0000 東京都千代田区〇〇1-2-3 〇〇ビル 8F<br>
+        TEL：03-1234-5678　Mail：info@biz-training.example.com
+      </p>
+      <p class="text-xs text-white/20">&copy; 2026 ビジネスコミュニケーション研修. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ページトップ -->
+<a href="#top"
+   class="fixed bottom-6 right-6 w-11 h-11 bg-navy-DEFAULT hover:bg-navy-mid rounded-lg flex items-center justify-center z-40 shadow-lg transition"
+   aria-label="ページトップへ">
+  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/>
+  </svg>
+</a>
+
+<script>
+  // スクロールアニメーション
+  const revEls = document.querySelectorAll('.reveal');
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  revEls.forEach(el => ro.observe(el));
+
+  // ヒーロー即時
+  document.querySelectorAll('#top .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 80 + i * 120);
+  });
+
+  // ヘッダースクロール
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // フォーム送信
+  function handleSubmit(e) {
+    e.preventDefault();
+    const errEl  = document.getElementById('form-error');
+    const btn    = document.getElementById('submit-btn');
+    const form   = document.getElementById('contact-form');
+
+    const company = document.getElementById('f-company').value.trim();
+    const dept    = document.getElementById('f-dept').value.trim();
+    const name    = document.getElementById('f-name').value.trim();
+    const tel     = document.getElementById('f-tel').value.trim();
+    const email   = document.getElementById('f-email').value.trim();
+
+    const showErr = msg => { errEl.textContent = msg; errEl.classList.remove('hidden'); };
+
+    if (!company) { showErr('会社名を入力してください。'); return; }
+    if (!dept)    { showErr('部署・役職を入力してください。'); return; }
+    if (!name)    { showErr('お名前を入力してください。'); return; }
+    if (tel.replace(/[^\d]/g, '').length < 10) { showErr('電話番号を正しく入力してください。'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr('メールアドレスを正しく入力してください。'); return; }
+
+    errEl.classList.add('hidden');
+    btn.disabled = true;
+    btn.innerHTML = `<svg class="animate-spin w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+    </svg> 送信中...`;
+
+    setTimeout(() => {
+      form.classList.add('hidden');
+      document.getElementById('thankyou').classList.remove('hidden');
+    }, 1400);
+  }
+</script>
+</body>
+</html>
