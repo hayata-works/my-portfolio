@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>推し活しながら、お金も増やす｜推し活×副業LP</title>
+  <meta name="description" content="推し活をしながら月1〜5万円の副収入を目指せる方法を紹介。スマホ1台・無料で始められる。" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pink: { DEFAULT: '#ec4899', light: '#fce7f3', mid: '#f9a8d4', dark: '#be185d' },
+            purple: { DEFAULT: '#a855f7', light: '#f3e8ff', mid: '#d8b4fe', dark: '#7e22ce' },
+          },
+          fontFamily: {
+            sans: ['Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'sans-serif'],
+          },
+          animation: {
+            'float': 'float 3s ease-in-out infinite',
+            'float2': 'float 3s ease-in-out 1s infinite',
+            'float3': 'float 3s ease-in-out 2s infinite',
+            'pulse-slow': 'pulse 3s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+
+    .gradient-hero {
+      background: linear-gradient(135deg, #fdf2f8 0%, #faf5ff 50%, #fce7f3 100%);
+    }
+    .gradient-cta {
+      background: linear-gradient(135deg, #ec4899 0%, #a855f7 100%);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #ec4899, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .gradient-btn {
+      background: linear-gradient(135deg, #ec4899, #a855f7);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .gradient-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+    .card-hover {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(236, 72, 153, 0.15);
+    }
+    .bubble {
+      position: absolute;
+      border-radius: 9999px;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    .sparkle {
+      display: inline-block;
+      animation: sparkle 1.5s ease-in-out infinite;
+    }
+    @keyframes sparkle {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+      50% { transform: scale(1.3) rotate(15deg); opacity: 0.7; }
+    }
+    .float { animation: float 3s ease-in-out infinite; }
+    .float2 { animation: float 3s ease-in-out 1s infinite; }
+    .float3 { animation: float 3s ease-in-out 2s infinite; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+    .step-connector {
+      position: relative;
+    }
+    .step-connector::after {
+      content: '→';
+      position: absolute;
+      right: -1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      color: #ec4899;
+      font-weight: bold;
+    }
+    @media (max-width: 768px) {
+      .step-connector::after { display: none; }
+    }
+    .sticky-cta {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 50;
+    }
+    .faq-answer { display: none; }
+    .faq-item.open .faq-answer { display: block; }
+    .faq-icon { transition: transform 0.2s ease; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+  </style>
+</head>
+<body class="font-sans text-gray-800 bg-white overflow-x-hidden">
+
+<!-- ===== HEADER ===== -->
+<header class="bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-pink-100 shadow-sm">
+  <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="text-2xl">✨</span>
+      <span class="font-black text-base gradient-text">推し活×副業</span>
+    </div>
+    <a href="#cta"
+       class="gradient-btn text-white font-bold px-5 py-2 rounded-full text-sm shadow-md">
+      無料で始める →
+    </a>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="gradient-hero relative overflow-hidden min-h-[90vh] flex items-center">
+  <!-- 背景デコ -->
+  <div class="bubble bg-pink-DEFAULT w-64 h-64 -top-16 -left-16"></div>
+  <div class="bubble bg-purple-DEFAULT w-96 h-96 -bottom-24 -right-24"></div>
+  <div class="bubble bg-pink-mid w-40 h-40 top-1/2 left-1/3"></div>
+
+  <div class="max-w-5xl mx-auto px-4 py-20 relative z-10 w-full">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <!-- バッジ -->
+        <div class="inline-flex items-center gap-2 bg-white border border-pink-200 rounded-full px-4 py-2 text-sm font-bold text-pink-DEFAULT shadow-sm mb-6">
+          <span class="sparkle">💖</span>
+          推し活しながら稼ぐ方法、あります
+        </div>
+
+        <h1 class="text-4xl md:text-5xl font-black leading-tight mb-5">
+          <span class="gradient-text">推し活しながら、</span><br />
+          <span class="text-gray-800">お金も増やす</span>
+        </h1>
+
+        <p class="text-gray-600 text-lg leading-relaxed mb-8">
+          好きなことを続けながら<br />
+          <strong class="text-pink-DEFAULT">副収入を得る方法</strong>、知っていますか？<br />
+          スマホ1台・無料から始められます。
+        </p>
+
+        <!-- 実績ポイント -->
+        <div class="flex flex-wrap gap-3 mb-8">
+          <span class="bg-white border border-pink-200 rounded-full px-3 py-1.5 text-xs font-bold text-pink-dark">📱 スマホだけでOK</span>
+          <span class="bg-white border border-purple-200 rounded-full px-3 py-1.5 text-xs font-bold text-purple-dark">💰 月1〜5万円も可能</span>
+          <span class="bg-white border border-pink-200 rounded-full px-3 py-1.5 text-xs font-bold text-pink-dark">🆓 初期費用ゼロ</span>
+        </div>
+
+        <a href="#cta"
+           class="gradient-btn text-white font-black py-5 px-10 rounded-full text-xl inline-flex items-center gap-3 shadow-xl">
+          <span>💖</span>
+          無料で詳しく見る
+          <span class="text-base">→</span>
+        </a>
+        <p class="text-gray-400 text-xs mt-3">※ 登録費・月額費用など一切かかりません</p>
+      </div>
+
+      <!-- イラスト -->
+      <div class="relative flex justify-center items-center">
+        <div class="relative">
+          <div class="float">
+            <img src="https://placehold.co/420x380/fce7f3/ec4899?text=推し活+%26+副業+%F0%9F%92%96"
+                 alt="推し活×副業イメージ"
+                 class="rounded-3xl shadow-2xl w-full max-w-sm mx-auto" />
+          </div>
+          <!-- フローティングバッジ -->
+          <div class="float2 absolute -top-4 -right-4 bg-white rounded-2xl shadow-xl p-3 text-center border border-pink-100">
+            <div class="text-2xl font-black gradient-text">+¥30,000</div>
+            <div class="text-xs text-gray-500">先月の副収入</div>
+          </div>
+          <div class="float3 absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl p-3 text-center border border-purple-100">
+            <div class="text-2xl">🎵</div>
+            <div class="text-xs font-bold text-purple-DEFAULT">推し活続行中♪</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== お悩み ===== -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <p class="text-pink-DEFAULT font-bold text-sm tracking-widest mb-2">PROBLEMS</p>
+      <h2 class="text-2xl md:text-4xl font-black text-gray-800 mb-4">
+        こんな悩み<br class="md:hidden" />ありませんか？
+        <span class="sparkle inline-block ml-2">😢</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+      <div class="flex items-start gap-4 bg-pink-light rounded-2xl p-5 card-hover">
+        <span class="text-3xl flex-shrink-0">💸</span>
+        <div>
+          <h3 class="font-black text-gray-800 mb-1">推し活にお金がかかりすぎる…</h3>
+          <p class="text-gray-500 text-sm">グッズ、ライブ、配信…気づいたら毎月赤字になっていませんか？</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 bg-purple-light rounded-2xl p-5 card-hover">
+        <span class="text-3xl flex-shrink-0">🎫</span>
+        <div>
+          <h3 class="font-black text-gray-800 mb-1">ライブ・グッズ・遠征費が足りない</h3>
+          <p class="text-gray-500 text-sm">行きたいライブも、欲しいグッズも、お金の壁で諦めたことはありませんか？</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 bg-pink-light rounded-2xl p-5 card-hover">
+        <span class="text-3xl flex-shrink-0">✨</span>
+        <div>
+          <h3 class="font-black text-gray-800 mb-1">好きなことで収入を得たい</h3>
+          <p class="text-gray-500 text-sm">どうせ時間を使うなら、推し活が収入につながれば最高なのに…</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 bg-purple-light rounded-2xl p-5 card-hover">
+        <span class="text-3xl flex-shrink-0">🤔</span>
+        <div>
+          <h3 class="font-black text-gray-800 mb-1">副業を始めたいけど何から？</h3>
+          <p class="text-gray-500 text-sm">副業に興味はあるけど、何をすればいいのかわからなくて一歩が踏み出せない。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 解決提示 -->
+    <div class="mt-12 text-center">
+      <div class="inline-block bg-gradient-to-r from-pink-light to-purple-light rounded-3xl px-8 py-6 border border-pink-200">
+        <p class="text-gray-700 font-bold text-lg mb-1">
+          <span class="text-2xl">💡</span> その悩み、全部解決できます！
+        </p>
+        <p class="text-gray-500 text-sm">推し活×副業の組み合わせで、<strong class="gradient-text">楽しみながら稼ぐ</strong>方法があります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 推し活×副業でできること ===== -->
+<section class="py-16 md:py-24 bg-gradient-to-br from-pink-light via-white to-purple-light">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <p class="text-pink-DEFAULT font-bold text-sm tracking-widest mb-2">WHAT YOU CAN DO</p>
+      <h2 class="text-2xl md:text-4xl font-black text-gray-800 mb-4">
+        推し活×副業で<span class="sparkle inline-block">🌟</span><br />
+        <span class="gradient-text">できること3つ</span>
+      </h2>
+      <p class="text-gray-500">好きなことをそのまま収益化できます</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- カード1 -->
+      <div class="bg-white rounded-3xl p-7 shadow-lg card-hover border border-pink-100 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-pink-light rounded-bl-full opacity-50"></div>
+        <div class="relative z-10">
+          <div class="w-16 h-16 rounded-2xl bg-pink-light flex items-center justify-center text-3xl mb-5">📝</div>
+          <div class="inline-block bg-pink-DEFAULT text-white text-xs font-black px-3 py-1 rounded-full mb-3">METHOD 01</div>
+          <h3 class="font-black text-xl text-gray-800 mb-3">推しの情報を発信して<br />ブログ収入</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">推しのライブレポ・プロフ・グッズ情報をブログに書くだけ。Google検索からのアクセスが広告収入につながります。</p>
+          <div class="mt-4 pt-4 border-t border-pink-100">
+            <div class="text-xs text-gray-500">収益の仕組み</div>
+            <div class="font-bold text-pink-DEFAULT text-sm mt-1">記事広告（Google AdSense）</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- カード2 -->
+      <div class="bg-white rounded-3xl p-7 shadow-lg card-hover border border-purple-100 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-purple-light rounded-bl-full opacity-50"></div>
+        <div class="relative z-10">
+          <div class="w-16 h-16 rounded-2xl bg-purple-light flex items-center justify-center text-3xl mb-5">🛍️</div>
+          <div class="inline-block bg-purple-DEFAULT text-white text-xs font-black px-3 py-1 rounded-full mb-3">METHOD 02</div>
+          <h3 class="font-black text-xl text-gray-800 mb-3">推しグッズをレビューして<br />アフィリエイト</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">実際に買ったグッズを正直レビュー。Amazonや楽天のリンクを貼れば、購入されるたびに報酬が発生します。</p>
+          <div class="mt-4 pt-4 border-t border-purple-100">
+            <div class="text-xs text-gray-500">収益の仕組み</div>
+            <div class="font-bold text-purple-DEFAULT text-sm mt-1">アフィリエイト（成果報酬）</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- カード3 -->
+      <div class="bg-white rounded-3xl p-7 shadow-lg card-hover border border-pink-100 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-pink-light rounded-bl-full opacity-50"></div>
+        <div class="relative z-10">
+          <div class="w-16 h-16 rounded-2xl bg-pink-light flex items-center justify-center text-3xl mb-5">📱</div>
+          <div class="inline-block bg-pink-DEFAULT text-white text-xs font-black px-3 py-1 rounded-full mb-3">METHOD 03</div>
+          <h3 class="font-black text-xl text-gray-800 mb-3">体験談をSNSで発信して<br />収益化</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">X（旧Twitter）やInstagramで推し活の体験を発信。フォロワーが増えれば企業案件やSNS収益化の道も開けます。</p>
+          <div class="mt-4 pt-4 border-t border-pink-100">
+            <div class="text-xs text-gray-500">収益の仕組み</div>
+            <div class="font-bold text-pink-DEFAULT text-sm mt-1">SNS収益化・企業コラボ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== メリット ===== -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <p class="text-purple-DEFAULT font-bold text-sm tracking-widest mb-2">MERITS</p>
+      <h2 class="text-2xl md:text-4xl font-black text-gray-800 mb-4">
+        この方法の<span class="gradient-text">3つのメリット</span>
+        <span class="sparkle inline-block ml-1">🎀</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- メリット1 -->
+      <div class="text-center">
+        <div class="float w-24 h-24 rounded-full bg-gradient-to-br from-pink-DEFAULT to-pink-dark flex items-center justify-center text-4xl mx-auto mb-5 shadow-lg">
+          💖
+        </div>
+        <h3 class="font-black text-xl text-gray-800 mb-3">好きなことが<br />仕事になる</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">推し活の知識や熱量が、そのまま価値になります。「好きだから続けられる」から挫折しにくいのが最大の強み。</p>
+      </div>
+
+      <!-- メリット2 -->
+      <div class="text-center">
+        <div class="float2 w-24 h-24 rounded-full bg-gradient-to-br from-purple-DEFAULT to-purple-dark flex items-center justify-center text-4xl mx-auto mb-5 shadow-lg">
+          📱
+        </div>
+        <h3 class="font-black text-xl text-gray-800 mb-3">スマホ1台で<br />始められる</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">パソコン不要。特別なスキルも必要ありません。今すぐ手元のスマホで発信活動をスタートできます。</p>
+      </div>
+
+      <!-- メリット3 -->
+      <div class="text-center">
+        <div class="float3 w-24 h-24 rounded-full bg-gradient-to-br from-pink-DEFAULT to-purple-DEFAULT flex items-center justify-center text-4xl mx-auto mb-5 shadow-lg">
+          💰
+        </div>
+        <h3 class="font-black text-xl text-gray-800 mb-3">月1〜5万円の<br />副収入が目指せる</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">コツコツ続けることで、ライブ遠征費・グッズ代を副収入で賄えるようになった方が続出しています。</p>
+      </div>
+    </div>
+
+    <!-- 実績イメージ -->
+    <div class="mt-14 bg-gradient-to-r from-pink-light to-purple-light rounded-3xl p-8">
+      <div class="grid md:grid-cols-3 gap-6 text-center">
+        <div>
+          <div class="text-4xl font-black gradient-text mb-1">3ヶ月</div>
+          <div class="text-gray-600 text-sm">で最初の収益が発生する人が多い</div>
+        </div>
+        <div>
+          <div class="text-4xl font-black gradient-text mb-1">¥30,000+</div>
+          <div class="text-gray-600 text-sm">月の副収入（継続した場合の目安）</div>
+        </div>
+        <div>
+          <div class="text-4xl font-black gradient-text mb-1">0円</div>
+          <div class="text-gray-600 text-sm">初期費用・月額費用</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 始め方 ===== -->
+<section class="py-16 md:py-24 bg-gradient-to-br from-purple-light via-white to-pink-light">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <p class="text-pink-DEFAULT font-bold text-sm tracking-widest mb-2">HOW TO START</p>
+      <h2 class="text-2xl md:text-4xl font-black text-gray-800 mb-4">
+        始め方はたった<span class="gradient-text">3ステップ</span>
+        <span class="sparkle inline-block ml-1">🚀</span>
+      </h2>
+      <p class="text-gray-500">今日から始められます。難しいことは何もありません。</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 relative">
+      <!-- ステップ1 -->
+      <div class="bg-white rounded-3xl p-7 shadow-lg card-hover border border-pink-100 relative">
+        <div class="absolute -top-4 left-6 w-10 h-10 gradient-btn rounded-full flex items-center justify-center text-white font-black text-lg shadow-md">1</div>
+        <!-- PC用矢印 -->
+        <div class="hidden md:block absolute top-1/2 -right-4 z-10 text-pink-DEFAULT text-3xl font-black -translate-y-1/2">→</div>
+        <div class="pt-3">
+          <div class="text-4xl mb-4">🎯</div>
+          <h3 class="font-black text-xl text-gray-800 mb-3">推しジャンルを<br />決める</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">K-POP・アニメ・2.5次元・俳優・バンド…あなたの「推し」のジャンルがそのままコンテンツになります。まずは「好き」を言語化しましょう。</p>
+          <div class="mt-4 bg-pink-light rounded-xl p-3">
+            <p class="text-xs text-pink-dark font-bold">💡 ポイント</p>
+            <p class="text-xs text-gray-600 mt-1">ニッチなジャンルほどライバルが少なく稼ぎやすい！</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ステップ2 -->
+      <div class="bg-white rounded-3xl p-7 shadow-lg card-hover border border-purple-100 relative">
+        <div class="absolute -top-4 left-6 w-10 h-10 bg-gradient-to-br from-purple-DEFAULT to-purple-dark rounded-full flex items-center justify-center text-white font-black text-lg shadow-md">2</div>
+        <div class="hidden md:block absolute top-1/2 -right-4 z-10 text-purple-DEFAULT text-3xl font-black -translate-y-1/2">→</div>
+        <div class="pt-3">
+          <div class="text-4xl mb-4">📢</div>
+          <h3 class="font-black text-xl text-gray-800 mb-3">発信方法を<br />選ぶ</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">ブログ・X・Instagram・YouTubeなど、自分に合った発信媒体を選びます。文章が好きならブログ、話すのが得意ならYouTubeがおすすめ。</p>
+          <div class="mt-4 bg-purple-light rounded-xl p-3">
+            <p class="text-xs text-purple-dark font-bold">💡 ポイント</p>
+            <p class="text-xs text-gray-600 mt-1">最初は1つに絞って継続することが大事！</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ステップ3 -->
+      <div class="bg-white rounded-3xl p-7 shadow-lg card-hover border border-pink-100">
+        <div class="absolute -top-4 left-6 w-10 h-10 gradient-btn rounded-full flex items-center justify-center text-white font-black text-lg shadow-md">3</div>
+        <div class="pt-3">
+          <div class="text-4xl mb-4">💰</div>
+          <h3 class="font-black text-xl text-gray-800 mb-3">収益化する</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">アクセスが集まったらアフィリエイトや広告を設置。商品レビューやライブレポから自然に収益が生まれる仕組みを作ります。</p>
+          <div class="mt-4 bg-pink-light rounded-xl p-3">
+            <p class="text-xs text-pink-dark font-bold">💡 ポイント</p>
+            <p class="text-xs text-gray-600 mt-1">最初から完璧を求めず、まずは発信を続けよう！</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-10">
+      <a href="#cta" class="gradient-btn text-white font-black py-5 px-10 rounded-full text-xl inline-flex items-center gap-3 shadow-xl">
+        <span>✨</span> 今すぐ無料で始める <span>→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== お声・体験談 ===== -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <p class="text-purple-DEFAULT font-bold text-sm tracking-widest mb-2">VOICES</p>
+      <h2 class="text-2xl md:text-4xl font-black text-gray-800 mb-4">
+        始めた人たちの<span class="gradient-text">リアルな声</span>
+        <span class="sparkle inline-block ml-1">💬</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-gradient-to-br from-pink-light to-white rounded-3xl p-6 card-hover border border-pink-100">
+        <div class="flex mb-3"><span class="text-yellow-400 text-sm">★★★★★</span></div>
+        <p class="text-gray-700 text-sm leading-relaxed mb-5">「推しのグッズレビューを書き始めて3ヶ月。アフィリエイト収入が発生した時は本当に嬉しかった！ライブのチケット代がまかなえるようになりました🎉」</p>
+        <div class="flex items-center gap-3">
+          <img src="https://placehold.co/40x40/fce7f3/ec4899?text=A" alt="Aさん" class="w-10 h-10 rounded-full" />
+          <div>
+            <div class="font-bold text-gray-800 text-sm">Aさん（24歳）</div>
+            <div class="text-gray-400 text-xs">K-POPオタク / ブログ×アフィリ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-purple-light to-white rounded-3xl p-6 card-hover border border-purple-100">
+        <div class="flex mb-3"><span class="text-yellow-400 text-sm">★★★★★</span></div>
+        <p class="text-gray-700 text-sm leading-relaxed mb-5">「Xで推し活日記を毎日投稿していたら半年でフォロワーが5000人に。企業からDMが来た時は夢かと思いました。推し活が仕事になるって本当でした✨」</p>
+        <div class="flex items-center gap-3">
+          <img src="https://placehold.co/40x40/f3e8ff/a855f7?text=B" alt="Bさん" class="w-10 h-10 rounded-full" />
+          <div>
+            <div class="font-bold text-gray-800 text-sm">Bさん（28歳）</div>
+            <div class="text-gray-400 text-xs">2.5次元オタク / SNS発信</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-pink-light to-white rounded-3xl p-6 card-hover border border-pink-100">
+        <div class="flex mb-3"><span class="text-yellow-400 text-sm">★★★★★</span></div>
+        <p class="text-gray-700 text-sm leading-relaxed mb-5">「副業なんて自分には無理と思ってたけど、推しのことを書いてるだけなので全然苦じゃない。今は月2〜3万円になって遠征費の心配がなくなりました💕」</p>
+        <div class="flex items-center gap-3">
+          <img src="https://placehold.co/40x40/fce7f3/ec4899?text=C" alt="Cさん" class="w-10 h-10 rounded-full" />
+          <div>
+            <div class="font-bold text-gray-800 text-sm">Cさん（31歳）</div>
+            <div class="text-gray-400 text-xs">アニメオタク / ブログ運営</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="py-16 md:py-24 bg-gradient-to-br from-pink-light/50 to-purple-light/50">
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <p class="text-pink-DEFAULT font-bold text-sm tracking-widest mb-2">FAQ</p>
+      <h2 class="text-2xl md:text-4xl font-black text-gray-800 mb-4">
+        よくある質問
+        <span class="sparkle inline-block ml-1">🙋</span>
+      </h2>
+    </div>
+
+    <div class="space-y-3">
+      <!-- Q1 -->
+      <div class="faq-item bg-white rounded-2xl overflow-hidden shadow-sm border border-pink-100">
+        <button class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between hover:bg-pink-light/30 transition-colors" onclick="toggleFaq(this)">
+          <div class="flex items-center gap-3">
+            <span class="gradient-btn text-white text-xs font-black w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0">Q</span>
+            <span class="font-bold text-gray-800 text-sm md:text-base">副業初心者でも本当にできますか？</span>
+          </div>
+          <span class="faq-icon text-pink-DEFAULT text-2xl font-bold flex-shrink-0 leading-none">＋</span>
+        </button>
+        <div class="faq-answer bg-pink-light/30 px-6 py-4 border-t border-pink-100">
+          <p class="text-gray-700 text-sm leading-relaxed">はい、できます！特別なスキルや資格は一切不要です。ブログやSNSは無料で始められ、推しへの情熱があれば誰でもスタートできます。最初は収益ゼロでも、続けることで徐々に成果が出てきます。</p>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="faq-item bg-white rounded-2xl overflow-hidden shadow-sm border border-purple-100">
+        <button class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between hover:bg-purple-light/30 transition-colors" onclick="toggleFaq(this)">
+          <div class="flex items-center gap-3">
+            <span class="bg-gradient-to-br from-purple-DEFAULT to-purple-dark text-white text-xs font-black w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0">Q</span>
+            <span class="font-bold text-gray-800 text-sm md:text-base">どれくらいで収益が出始めますか？</span>
+          </div>
+          <span class="faq-icon text-purple-DEFAULT text-2xl font-bold flex-shrink-0 leading-none">＋</span>
+        </button>
+        <div class="faq-answer bg-purple-light/30 px-6 py-4 border-t border-purple-100">
+          <p class="text-gray-700 text-sm leading-relaxed">個人差はありますが、コツコツ続けると3〜6ヶ月で最初の収益が発生するケースが多いです。アフィリエイトは比較的早く成果が出やすく、最初の1〜2ヶ月で数百円〜数千円が入ることも。焦らず継続することが大切です。</p>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="faq-item bg-white rounded-2xl overflow-hidden shadow-sm border border-pink-100">
+        <button class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between hover:bg-pink-light/30 transition-colors" onclick="toggleFaq(this)">
+          <div class="flex items-center gap-3">
+            <span class="gradient-btn text-white text-xs font-black w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0">Q</span>
+            <span class="font-bold text-gray-800 text-sm md:text-base">毎日投稿しないといけないの？</span>
+          </div>
+          <span class="faq-icon text-pink-DEFAULT text-2xl font-bold flex-shrink-0 leading-none">＋</span>
+        </button>
+        <div class="faq-answer bg-pink-light/30 px-6 py-4 border-t border-pink-100">
+          <p class="text-gray-700 text-sm leading-relaxed">毎日投稿は必須ではありません。ブログなら週1〜2記事でも十分です。SNSは頻度が大切ですが、無理のないペースで続けることの方が長期的には効果的です。推し活のタイミング（ライブ後・新グッズ発売時など）に合わせて発信するのがおすすめです。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 最終CTA ===== -->
+<section id="cta" class="gradient-cta py-20 md:py-28 relative overflow-hidden">
+  <!-- デコ -->
+  <div class="bubble bg-white w-80 h-80 -top-20 -left-20"></div>
+  <div class="bubble bg-white w-60 h-60 -bottom-16 -right-16"></div>
+
+  <div class="max-w-3xl mx-auto px-4 text-center relative z-10">
+    <div class="text-5xl mb-5">
+      <span class="float inline-block">💖</span>
+      <span class="float2 inline-block mx-2">✨</span>
+      <span class="float3 inline-block">🎵</span>
+    </div>
+
+    <h2 class="text-3xl md:text-5xl font-black text-white mb-4 leading-tight">
+      推し活しながら<br />お金も増やそう
+    </h2>
+    <p class="text-pink-100 text-lg mb-3">好きなことで副収入を得る第一歩を踏み出してみませんか？</p>
+    <p class="text-white/80 text-sm mb-10">スマホ1台・初期費用ゼロ・今すぐ始められます</p>
+
+    <!-- CTAボタン -->
+    <a href="#"
+       class="bg-white text-pink-DEFAULT font-black text-xl py-5 px-12 rounded-full inline-flex items-center gap-3 shadow-2xl hover:-translate-y-1 hover:shadow-pink-200 transition-all duration-200">
+      <span>✨</span>
+      今すぐ無料で始める
+      <span>→</span>
+    </a>
+
+    <p class="text-white/60 text-xs mt-5">※ 登録費・月額費用など一切かかりません</p>
+
+    <!-- 安心ポイント -->
+    <div class="flex flex-wrap justify-center gap-4 mt-8">
+      <div class="bg-white/20 backdrop-blur-sm text-white rounded-full px-4 py-2 text-sm font-bold">🆓 完全無料</div>
+      <div class="bg-white/20 backdrop-blur-sm text-white rounded-full px-4 py-2 text-sm font-bold">📱 スマホのみ</div>
+      <div class="bg-white/20 backdrop-blur-sm text-white rounded-full px-4 py-2 text-sm font-bold">⏱️ 5分で登録完了</div>
+      <div class="bg-white/20 backdrop-blur-sm text-white rounded-full px-4 py-2 text-sm font-bold">🛡️ いつでも退会OK</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="bg-gray-900 text-gray-400 py-8">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
+      <div class="flex items-center gap-2">
+        <span class="text-xl">✨</span>
+        <span class="text-white font-black gradient-text">推し活×副業</span>
+      </div>
+      <div class="flex gap-6 text-xs">
+        <a href="#" class="hover:text-pink-DEFAULT transition-colors">プライバシーポリシー</a>
+        <a href="#" class="hover:text-pink-DEFAULT transition-colors">特定商取引法に基づく表記</a>
+        <a href="#" class="hover:text-pink-DEFAULT transition-colors">免責事項</a>
+      </div>
+    </div>
+    <div class="border-t border-gray-700 pt-6 text-center text-xs">
+      <p class="mb-2 text-gray-500">※ 収益に関する数値は個人の体験・目安であり、成果を保証するものではありません。</p>
+      <p>© 2024 推し活×副業 All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== 固定CTA（スマホ） ===== -->
+<div class="sticky-cta md:hidden">
+  <a href="#cta" class="gradient-btn text-white font-black py-4 flex items-center justify-center gap-2 text-base shadow-2xl">
+    <span>💖</span> 今すぐ無料で始める →
+  </a>
+</div>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    document.querySelectorAll('.faq-icon').forEach(el => el.textContent = '＋');
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.querySelector('.faq-icon').textContent = '×';
+    }
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const id = link.getAttribute('href').slice(1);
+      if (!id) return;
+      const target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      const offset = window.innerWidth < 768 ? 60 : 64;
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
+    });
+  });
+
+  if (window.innerWidth < 768) {
+    document.body.style.paddingBottom = '56px';
+  }
+</script>
+</body>
+</html>
